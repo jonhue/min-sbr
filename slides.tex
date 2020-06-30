@@ -132,7 +132,7 @@ Given two permutations $\sigma, \tau \in S_n$ find a sequence of reversals $\rho
     \sigma \circ \rho_1 \circ \cdots \circ \rho_d = \tau
 \end{align*}
 and $d$ is minimal. \pause\par\padding
-$d$ is called \b{reversal distance} between $\sigma$ and $\tau$. \cite{Kececioglu1995}
+$d$ is called \b{reversal distance} between $\sigma$ and $\tau$.
 \end{definition}
 
 \end{frame}
@@ -149,7 +149,7 @@ Let $\pi = \tau^{-1} \circ \sigma \in S_n$. \par\pause
 \begin{align*}
     \pi \circ \rho_1 \circ \cdots \circ \rho_d = id
 \end{align*}
-and $d$ is minimal. \cite{Kececioglu1995}
+and $d$ is minimal.
 \end{definition}
 
 \end{frame}
@@ -163,15 +163,15 @@ Let $\pi = (0\ 4\ 2\ 1\ 3\ 5) \in S_4$.\pause
     \pi \circ \rho(1,3) \circ \rho(3,4) &= (0\ 1\ 2\ \r{3\ 4}\ 5) = id
 \end{align*}\pause
 $\implies d(\pi) \leq 2$.
-\end{exampleblock}\pause\padding
+\end{exampleblock}
 
-\begin{algorithm}[ratchet algorithm, \citeauthor*{Watterson19821}]
-For each element at position $i$, perform $\rho(i, \pi_i^{-1})$ if $i \neq \pi_i$.
-\end{algorithm}\pause
+% \begin{algorithm}[ratchet algorithm, \citeauthor*{Watterson19821}]
+% For each element at position $i$, perform $\rho(i, \pi_i^{-1})$ if $i \neq \pi_i$.
+% \end{algorithm}\pause
 
-\begin{corollary}[tight upper bound, \citeauthor*{Kececioglu1995}]
-$d(\pi) \leq n - 1$ for all $\pi \in S_n$.
-\end{corollary}
+% \begin{corollary}[tight upper bound, \citeauthor*{Kececioglu1995}]
+% $d(\pi) \leq n - 1$ for all $\pi \in S_n$.
+% \end{corollary}
 
 \end{frame}
 
@@ -189,7 +189,7 @@ A pair of consecutive elements $\pi_i$ and $\pi_j$ is
 $b(\pi)$ denotes the number of breakpoints in $\pi \in S_n$.
 \end{definition}\pause\padding
 
-Observation: $b(\pi) = 0$ iff $\pi = id$ and any reversal can at most eliminate two breakpoints. \pause\spadding
+Observation: $b(\pi) = 0$ iff $\pi = id$ \pause and any reversal can at most eliminate two breakpoints. \pause\spadding
 
 \begin{corollary}[lower bound, \citeauthor*{Kececioglu1995}]
 $d(\pi) \geq \left\lceil \frac{b(\pi)}{2} \right\rceil$ for all $\pi \in S_n$.
@@ -206,7 +206,7 @@ Let $G(\pi) = (V, E)$ with
     \item edges $E = \r R \cup \b B$ with
     \begin{itemize}
         \item a \r{red} edge for every breakpoint in $\pi$; and
-        \item a \b{blue} edge for every adjacency in $\pi$.
+        \item a \b{blue} edge for every missing adjacency in $\pi$.
     \end{itemize}
 \end{itemize}
 \end{definition}
@@ -216,7 +216,7 @@ Let $G(\pi) = (V, E)$ with
 \begin{frame}
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ \r\mid\ 4\ \r\mid\ 2\ 1\ \r\mid\ 3\ \r\mid\ 5) \in S_4$.
+Let $\pi = (0\ \r\mid\ 4\ \r\mid\ 2\ 1\ \r\mid\ 3\ \r\mid\ 5) \in S_4$. \pause Then $G(\pi)$ is
 
 \begin{center}
 \begin{tikzpicture}
@@ -252,10 +252,33 @@ $G(\pi)$ can be decomposed into edge-disjoint alternating cycles.
 
 \begin{frame}
 
+\begin{center}
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (3) at (-1.5, 0) {4};
+		\node [style=node] (4) at (0, 0) {2};
+		\node [style=node] (5) at (1.5, 0) {1};
+		\node [style=node] (8) at (3, 0) {3};
+		\node [style=node] (9) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (8) to (9);
+		\draw [style=red edge] (0) to (3);
+		\draw [style=red edge] (5) to (8);
+		\draw [style=blue edge, bend left] (4) to (8);
+		\draw [style=blue edge, bend left] (3) to (9);
+		\draw [style=blue edge, bend right] (0) to (5);
+		\draw [style=blue edge, bend right] (3) to (8);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+
 \begin{definition}
 A reversal is called \b{$k$-reversal} if it removes $k$ breakpoints. \pause\spadding
 
-A reversal \b{acts on} two red edges of $G\pi)$ if those two edges represent the breakpoints that are split apart by the reversal. \pause\spadding
+A reversal \b{acts on} two red edges of $G(\pi)$ if those two edges represent the breakpoints that are split apart by the reversal. \pause\spadding
 
 An alternating cycle in $G(\pi)$ is a \b{$k$-cycle} if it has $k$ constituting red edges. \pause\spadding
 
@@ -485,7 +508,7 @@ Lastly, we prove the approximation bound.
 
 \begin{frame}
 
-\begin{definition}[reversal graph of $G(\pi)$, \citeauthor*{Christie1998}]
+\begin{definition}[reversal graph, \citeauthor*{Christie1998}]
 Given an alternating cycle decomposition $C$ of $G(\pi)$, \par\pause
 define $R(C)$ with
 \begin{itemize}
@@ -570,7 +593,7 @@ Idea: Each connected component of $R(C)$ can be sorted separately.
 Let $u$ be a vertex of $R(C)$.\pause
 
 \begin{definition}
-Denote by $C_u$ the alternating cycle decomposition of $G(\pi \circ \rho_u)$ that is obtained from $C$ by removing one 2-cycle or shortening one of its cycles by one red edge.
+Denote by $C_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $C$ by removing one 2-cycle or shortening one of its cycles by one red edge.
 \end{definition}\pause
 
 \begin{lemma}[\citeauthor*{Christie1998}]
