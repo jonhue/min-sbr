@@ -65,7 +65,7 @@
 }
 \makeatother
 
-\usepackage[sorting=ynt]{biblatex}
+\usepackage[sorting=ynt,style=alphabetic]{biblatex}
 \addbibresource{sources.bib}
 
 \title[Sorting by Reversals]{Sorting by Reversals}
@@ -82,7 +82,7 @@
  \tableofcontents
 \end{frame}
 
-\section{Introduction}
+\section{Motivation}
 
 \subsection{Symmetric group}
 
@@ -113,10 +113,10 @@ for some $j \geq i$.
 \end{definition}\pause
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ 4\ 2\ 1\ 3\ 5) \in S_4$. \par
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$. \par
 Then
 \begin{align*}
-    \pi \circ \rho(1,4) = (0\ \r{3\ 1\ 2\ 4}\ 5).
+    \pi \circ \rho(2,4) = (0\ 1\ \r{2\ 4\ 3}\ 5).
 \end{align*}
 \end{exampleblock}
 
@@ -157,10 +157,10 @@ and $d$ is minimal.
 \begin{frame}
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ 4\ 2\ 1\ 3\ 5) \in S_4$.\pause
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$.\pause
 \begin{align*}
-    \pi \circ \rho(1,3) &= (0\ \r{1\ 2\ 4}\ 3\ 5) \\ \pause
-    \pi \circ \rho(1,3) \circ \rho(3,4) &= (0\ 1\ 2\ \r{3\ 4}\ 5) = id
+    \pi \circ \rho(2,4) &= (0\ 1\ \r{2\ 4\ 3}\ 5) \\ \pause
+    \pi \circ \rho(2,4) \circ \rho(3,4) &= (0\ 1\ 2\ \r{3\ 4}\ 5) = id
 \end{align*}\pause
 $\implies d(\pi) \leq 2$.
 \end{exampleblock}
@@ -216,27 +216,25 @@ Let $G(\pi) = (V, E)$ with
 \begin{frame}
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ \r\mid\ 4\ \r\mid\ 2\ 1\ \r\mid\ 3\ \r\mid\ 5) \in S_4$. \pause Then $G(\pi)$ is
+Let $\pi = (0\ 1\ \r\mid\ 3\ 4\ \r\mid\ 2\ \r\mid\ 5) \in S_4$. \pause Then $G(\pi)$ is
 
-\begin{center}
+\spadding\begin{center}
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
-		\node [style=node] (3) at (-1.5, 0) {4};
-		\node [style=node] (4) at (0, 0) {2};
-		\node [style=node] (5) at (1.5, 0) {1};
-		\node [style=node] (8) at (3, 0) {3};
-		\node [style=node] (9) at (4.5, 0) {5};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
 		\draw [style=red edge] (3) to (4);
-		\draw [style=red edge] (8) to (9);
-		\draw [style=red edge] (0) to (3);
-		\draw [style=red edge] (5) to (8);
-		\draw [style=blue edge, bend left] (4) to (8);
-		\draw [style=blue edge, bend left] (3) to (9);
-		\draw [style=blue edge, bend right] (0) to (5);
-		\draw [style=blue edge, bend right] (3) to (8);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{center}
@@ -256,21 +254,19 @@ $G(\pi)$ can be decomposed into edge-disjoint alternating cycles.
 \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
-		\node [style=node] (3) at (-1.5, 0) {4};
-		\node [style=node] (4) at (0, 0) {2};
-		\node [style=node] (5) at (1.5, 0) {1};
-		\node [style=node] (8) at (3, 0) {3};
-		\node [style=node] (9) at (4.5, 0) {5};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
 		\draw [style=red edge] (3) to (4);
-		\draw [style=red edge] (8) to (9);
-		\draw [style=red edge] (0) to (3);
-		\draw [style=red edge] (5) to (8);
-		\draw [style=blue edge, bend left] (4) to (8);
-		\draw [style=blue edge, bend left] (3) to (9);
-		\draw [style=blue edge, bend right] (0) to (5);
-		\draw [style=blue edge, bend right] (3) to (8);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{center}
@@ -518,12 +514,12 @@ define $R(C)$ with
         \item a vertex is \r{red} if the represented reversal is a $1$- or $2$-reversal
         \item a vertex is \b{blue} otherwise
     \end{itemize}\pause
-    \item connect two vertices with an edge if their corresponding blue edges \textit{interleave} (i.e. overlap).
+    \item connect two vertices with an edge if their corresponding blue edges \textit{interleave}.
 \end{itemize}
 \end{definition}\pause
 
 \begin{corollary}[\citeauthor*{Christie1998}]
-The only alternating cycle decomposition of $id$ is $C = \emptyset$. \par
+The only alternating cycle decomposition of $G(id)$ is $C = \emptyset$. \par
 $R(C)$ consists of $n+1$ isolated blue vertices.
 \end{corollary}
 
@@ -537,27 +533,25 @@ Given the alternating cycle decomposition $C$ of $G(\pi)$
 
 \begin{tabularx}{\textwidth}{XR}
 {\footnotesize\begin{align*}
-    C = \{&\{\{0,4\},\{3,4\},\{1,3\},\{0,1\}\} \\
-          &\{\{2,4\},\{2,3\},\{3,5\},\{4,5\}\}\}
+    C = \{(&\{1,3\},\{2,3\},\{2,4\}, \\
+           &\{4,5\},\{2,5\},\{1,2\})\}
 \end{align*}} &
 \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
-		\node [style=node] (3) at (-1.5, 0) {4};
-		\node [style=node] (4) at (0, 0) {2};
-		\node [style=node] (5) at (1.5, 0) {1};
-		\node [style=node] (8) at (3, 0) {3};
-		\node [style=node] (9) at (4.5, 0) {5};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
 		\draw [style=red edge] (3) to (4);
-		\draw [style=red edge] (8) to (9);
-		\draw [style=red edge] (0) to (3);
-		\draw [style=red edge] (5) to (8);
-		\draw [style=blue edge, bend left] (4) to (8);
-		\draw [style=blue edge, bend left] (3) to (9);
-		\draw [style=blue edge, bend right] (0) to (5);
-		\draw [style=blue edge, bend right] (3) to (8);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{tabularx}\pause
@@ -567,18 +561,15 @@ construct $R(C)$.
 \begin{center}
 \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=red node] (0) at (0, 1) {$\{3,4\}$};
-		\node [style=red node] (1) at (-2, 1) {$\{0,1\}$};
-		\node [style=blue node] (2) at (-2, -1) {$\{2,3\}$};
-		\node [style=blue node] (3) at (0, -1) {$\{4,5\}$};
-		\node [style=blue node] (4) at (2, 0) {$\{1,2\}$};
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
-		\draw (1) to (0);
-		\draw (2) to (1);
-		\draw (0) to (3);
-		\draw (1) to (3);
-		\draw (2) to (0);
+		\draw (0) to (2);
+		\draw (1) to (2);
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{center}
@@ -611,72 +602,67 @@ $R(C_u)$ can be derived from $R(C)$ by making the following changes to $R(C)$:\p
 \begin{frame}
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ 4\ 2\ 1\ 3\ 5) \in S_4$ and $u = \{0,1\}$.\padding
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u = \{1,2\}$.\padding
 
 \begin{tabularx}{\textwidth}{X|R}
 $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
-\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+\spadding\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
-		\node [style=node] (3) at (-1.5, 0) {4};
-		\node [style=node] (4) at (0, 0) {2};
-		\node [style=node] (5) at (1.5, 0) {1};
-		\node [style=node] (8) at (3, 0) {3};
-		\node [style=node] (9) at (4.5, 0) {5};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
 		\draw [style=red edge] (3) to (4);
-		\draw [style=red edge] (8) to (9);
-		\draw [style=red edge] (0) to (3);
-		\draw [style=red edge] (5) to (8);
-		\draw [style=blue edge, bend left] (4) to (8);
-		\draw [style=blue edge, bend left] (3) to (9);
-		\draw [style=blue edge, bend right] (0) to (5);
-		\draw [style=blue edge, bend right] (3) to (8);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture} &
 \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
-		\node [style=node] (3) at (-1.5, 0) {1};
-		\node [style=node] (4) at (0, 0) {2};
-		\node [style=node] (5) at (1.5, 0) {4};
-		\node [style=node] (8) at (3, 0) {3};
-		\node [style=node] (9) at (4.5, 0) {5};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {3};
+		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (2) to (3);
 		\draw [style=red edge] (4) to (5);
-		\draw [style=red edge] (8) to (9);
-		\draw [style=blue edge, bend left] (4) to (8);
-		\draw [style=blue edge, bend left] (5) to (9);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture}\\
 \spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=red node] (0) at (0, 1) {$\{3,4\}$};
-		\node [style=red node] (1) at (-2, 1) {$\{0,1\}$};
-		\node [style=blue node] (2) at (-2, -1) {$\{2,3\}$};
-		\node [style=blue node] (3) at (0, -1) {$\{4,5\}$};
-		\node [style=blue node] (4) at (2, 0) {$\{1,2\}$};
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
-		\draw (1) to (0);
-		\draw (2) to (1);
-		\draw (0) to (3);
-		\draw (1) to (3);
-		\draw (2) to (0);
+		\draw (0) to (2);
+		\draw (1) to (2);
 	\end{pgfonlayer}
 \end{tikzpicture} &
 \spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=blue node] (0) at (0, 1) {$\{3,4\}$};
-		\node [style=blue node] (1) at (-2, 1) {$\{0,1\}$};
-		\node [style=red node] (2) at (-2, -1) {$\{2,3\}$};
-		\node [style=red node] (3) at (0, -1) {$\{4,5\}$};
-		\node [style=blue node] (4) at (2, 0) {$\{1,2\}$};
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=red node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
-		\draw (2) to (3);
+		\draw (0) to (2);
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{tabularx}
