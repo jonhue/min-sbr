@@ -333,6 +333,7 @@ Let $\pi, \rho \in S_n$ and $\rho$ be a reversal. \pause Then
 \begin{frame}
 
 \begin{proof}
+To show: $b(\pi) - b(\pi \circ \rho) + c(\pi \circ \rho) - c(\pi) \leq 1$. \par
 We consider each case $b(\pi) - b(\pi \circ \rho) \in [-2, 2]$ separately.\pause
 \begin{enumerate}
     \item A $2$-reversal removes at least one alternating cycle from the maximum alternating cycle decomposition.
@@ -518,8 +519,9 @@ define $R(C)$ with
 \end{itemize}
 \end{definition}\pause
 
+Observation: The only alternating cycle decomposition of $G(id)$ is $C = \emptyset$.\pause
+
 \begin{corollary}[\citeauthor*{Christie1998}]
-The only alternating cycle decomposition of $G(id)$ is $C = \emptyset$. \par
 $R(C)$ consists of $n+1$ isolated blue vertices.
 \end{corollary}
 
@@ -624,7 +626,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
 \end{tikzpicture} &
-\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+\onslide<2->{\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
 		\node [style=node] (1) at (-1.5, 0) {1};
@@ -639,7 +641,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 		\draw [style=blue edge, bend left] (2) to (4);
 		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
-\end{tikzpicture}\\
+\end{tikzpicture}}\\
 \spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
@@ -653,7 +655,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 		\draw (1) to (2);
 	\end{pgfonlayer}
 \end{tikzpicture} &
-\spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+\onslide<3->{\spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
 		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
@@ -664,7 +666,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (2);
 	\end{pgfonlayer}
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{tabularx}
 \end{exampleblock}
 
@@ -681,18 +683,38 @@ A reversal $\rho(u)$ affects only vertices that are in the same connected compon
 All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
 \end{lemma}
 
+\begin{corollary}[\citeauthor*{Christie1998}]
+$R(C)$ contains no isolated blue vertices arising from cycles in $C$.
+\end{corollary}\pause
+
 \end{frame}
 
 \begin{frame}
 
 \begin{lemma}[\citeauthor*{Christie1998}]
-$R(C)$ contains no isolated blue vertices arising from cycles in $C$.
-\end{lemma}\pause
-
-\begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:7}
 Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected component of $R(C)$ with vertices arising from at least one more alternating cycle of $C$.
-\end{lemma}\pause
+\end{lemma}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {};
+		\node [style=node] (1) at (-1.25, 0) {};
+		\node [style=node] (2) at (1.25, 0) {};
+		\node [style=node] (3) at (3, 0) {};
+		\node (4) at (0, 0) {$\dots$};
+		\node (5) at (-4.25, 0) {$\dots$};
+		\node (6) at (4.25, 0) {$\dots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=blue edge, bend left] (0) to node[sloped,midway,above] {u} (3);
+		\draw  [style=blue edge, bend right](1) to node[sloped,midway,below] {v} (2);
+		\draw [style=red edge] (0) to (1);
+		\draw [style=red edge] (2) to (3);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}\pause
 
 \begin{proof}
 Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $C$. \par\pause
