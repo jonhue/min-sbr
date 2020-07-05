@@ -412,11 +412,14 @@ Let $\pi \in S_n$. Then
 \end{theorem}\pause
 
 \begin{proof}\renewcommand{\qedsymbol}{}
-Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of reversals from $\pi_t$ to $\pi_0$. \par\pause
-Then
+Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of reversals from $\pi_t$ to $\pi_0$. \pause Then
 \begin{align*}
     d(\pi_i) &= d(\pi_{i-1}) + 1 \\ \pause
-             \overset{(\ref{thm:1})}&{\geq} d(\pi_{i-1}) + b(\pi_i) - b(\pi_{i-1}) + c(\pi_{i-1}) - c(\pi_i).
+             \overset{(\ref{thm:1})}&{\geq} d(\pi_{i-1}) + b(\pi_i) - b(\pi_{i-1}) + c(\pi_{i-1}) - c(\pi_i) \\[0.25cm] \pause
+    \iff & \begin{aligned}[t]
+    d(\pi_i) - (b(\pi_i) - c(\pi_i)) &\geq d(\pi_{i-1}) - (b(\pi_{i-1}) - c(\pi_{i-1})) \\ \pause
+                                     &\geq d(\pi_0) - (b(\pi_0) - c(\pi_0))\pause = 0
+    \end{aligned}
 \end{align*}
 \end{proof}
 
@@ -425,61 +428,20 @@ Then
 \begin{frame}
 
 \begin{proof}[Proof (cont.)]
-Therefore
-\begin{align*}
-    d(\pi_i) - (b(\pi_i) - c(\pi_i)) &\geq d(\pi_{i-1}) - (b(\pi_{i-1}) - c(\pi_{i-1})) \\ \pause
-                                     &\geq d(\pi_0) - (b(\pi_0) - c(\pi_0))\pause = 0
-\end{align*}\pause
 Let $i = t$. Then
 \begin{align*}
-    && d(\pi_t) - (b(\pi_t) - c(\pi_t)) &\geq 0 \\ \pause
-    \iff && d(\pi) - (b(\pi) - c(\pi))  &\geq 0 \\ \pause
-    \iff && d(\pi)                      &\geq b(\pi) - c(\pi).
+         && d(\pi) - (b(\pi) - c(\pi)) &\geq 0 \\ \pause
+    \iff && d(\pi)                     &\geq b(\pi) - c(\pi).
 \end{align*}
-\end{proof}
-
-\end{frame}
-
-\begin{frame}
-
-\begin{lemma}[\citeauthor*{Christie1998}]
-\label{lem:1}
-Let $C$ be the maximum alternating cycle decomposition of $G(\pi)$. \par\pause
-Let $c_2(\pi)$ be the minimum number of alternating $2$-cycles in $C$ \pause and let $c_{3*}(\pi) = c(\pi) - c_2(\pi)$ be the remaining alternating cycles in $C$. \pause
-Then
-\begin{align*}
-    c_{3*}(\pi) \leq \frac{1}{3}(b(\pi) - 2 c_2(\pi)).
-\end{align*}
-\end{lemma}
-
-\begin{proof}
-\begin{itemize}
-    \item $b(\pi)$ is the number of red edges in $G(\pi)$ and $c_2(\pi)$ is the number of red edges in $2$-cycles of $G(\pi)$. \par\pause
-    \item $b(\pi) - 2 c_2(\pi)$ is the number of red edges in $G(\pi)$ not occurring in $2$-cycles. \par\pause
-    \item $3 c_{3*}(\pi)$ is a lower bound to the number of red edges in $G(\pi)$ not occurring in $2$-cycles.\qedhere
-\end{itemize}
-\end{proof}
-
-\end{frame}
-
-\begin{frame}
+\end{proof}\pause
 
 \begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
 \label{thm:3}
-Let $\pi \in S_n$. Then
+Let $\pi \in S_n$ and $C$ be the maximum alternating cycle decomposition of $G(\pi)$. Let $c_2(\pi)$ be the minimum number of alternating $2$-cycles in $C$. Then
 \begin{align*}
     d(\pi) \geq \frac{2}{3} b(\pi) - \frac{1}{3} c_2(\pi).
 \end{align*}
-\end{theorem}\pause
-
-\begin{proof}
-\begin{align*}
-    d(\pi) \overset{(\ref{thm:2})}&{\geq} b(\pi) - c(\pi) \\ \pause
-           &\geq b(\pi) - c_2(\pi) - c_{3*}(\pi) \\ \pause
-           \overset{(\ref{lem:1})}&{\geq} b(\pi) - c_2(\pi) - \frac{1}{3}(b(\pi) - 2 c_2(\pi)) \\ \pause
-           &= \frac{2}{3} b(\pi) - \frac{1}{3} c_2(\pi).
-\end{align*}
-\end{proof}
+\end{theorem}
 
 \end{frame}
 
@@ -530,7 +492,7 @@ $R(C)$ consists of $n+1$ isolated blue vertices.
 \begin{frame}
 
 \begin{exampleblock}{Example}
-Let $\pi = (0\ 4\ 2\ 1\ 3\ 5) \in S_4$. \par
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$. \par
 Given the alternating cycle decomposition $C$ of $G(\pi)$
 
 \begin{tabularx}{\textwidth}{XR}
