@@ -109,7 +109,7 @@ A \b{reversal} $\rho(i,j) \in S_n$ is defined as
 \[
     \rho(i,j) = (0\ 1\ \cdots\ i-1\ \r j\ \r{j-1}\ \r \cdots\ \r{i+1}\ \r i\ j+1\ \cdots\ n\ n+1)
 \]
-for some $j \geq i$.
+for some $i, j \in [1, n]$ with $j \geq i$.
 \end{definition}\pause
 
 \begin{exampleblock}{Example}
@@ -288,11 +288,11 @@ We call an alternating cycle $C$ in $G(\pi)$ \b{oriented} if there is a $1$- or 
 \begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:2}
 An oriented alternating cycle is a $2$-cycle iff the corresponding reversal acting on both red edges is a $2$-reversal.
-\end{lemma}\pause
+\end{lemma}\spadding
 
-\begin{proof}
 Let $i \sim i'$ and $j \sim j'$.
 
+\begin{figure}
 \begin{center}
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
@@ -312,7 +312,31 @@ Let $i \sim i'$ and $j \sim j'$.
 	\end{pgfonlayer}
 \end{tikzpicture}
 \end{center}
-\end{proof}
+\caption{Oriented $2$-cycle}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-1.25, 0) {i};
+		\node [style=node] (1) at (1.25, 0) {i'};
+		\node [style=node] (2) at (3, 0) {j'};
+		\node [style=node] (3) at (-3, 0) {j};
+		\node (4) at (0, 0) {$\dots$};
+		\node (5) at (-4.25, 0) {$\dots$};
+		\node (6) at (4.25, 0) {$\dots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=blue edge, bend right] (2) to (3);
+		\draw [style=blue edge, bend left] (0) to (1);
+		\draw [style=red edge] (3) to (0);
+		\draw [style=red edge] (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\caption{Unoriented $2$-cycle}
+\end{figure}
 
 \end{frame}
 
@@ -437,7 +461,7 @@ Let $i = t$. Then
 
 \begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
 \label{thm:3}
-Let $\pi \in S_n$ and $C$ be the maximum alternating cycle decomposition of $G(\pi)$. Let $c_2(\pi)$ be the minimum number of alternating $2$-cycles in $C$. Then
+Let $\pi \in S_n$ and $C$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $c_2(\pi)$ be the minimum number of alternating $2$-cycles in any such $C$. Then
 \begin{align*}
     d(\pi) \geq \frac{2}{3} b(\pi) - \frac{1}{3} c_2(\pi).
 \end{align*}
@@ -545,10 +569,10 @@ Idea: Each connected component of $R(C)$ can be sorted separately.
 
 \begin{frame}
 
-Let $u$ be a vertex of $R(C)$.\pause
+Let $u$ be a vertex of $R(C)$ representing reversal $\rho(u)$.\pause
 
 \begin{definition}
-Denote by $C_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $C$ by removing one 2-cycle or shortening one of its cycles by one red edge.
+Denote by $C_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $C$.% by removing one 2-cycle or shortening one of its cycles by one red edge.
 \end{definition}\pause
 
 \begin{lemma}[\citeauthor*{Christie1998}]
@@ -636,18 +660,13 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 
 \begin{frame}
 
-\begin{corollary}[\citeauthor*{Christie1998}]
-A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
-\end{corollary}\pause
+% \begin{corollary}[\citeauthor*{Christie1998}]
+% A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
+% \end{corollary}\pause
 
-\begin{lemma}[\citeauthor*{Christie1998}]
-\label{lem:3}
-All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
-\end{lemma}\pause
-
-\begin{corollary}[\citeauthor*{Christie1998}]
-$R(C)$ contains no isolated blue vertices arising from cycles in $C$.
-\end{corollary}
+% \begin{corollary}[\citeauthor*{Christie1998}]
+% $R(C)$ contains no isolated blue vertices arising from cycles in $C$.
+% \end{corollary}
 
 \end{frame}
 
@@ -688,6 +707,11 @@ If its constituting blue edges do not interleave with blue edges of any other al
 
 \begin{frame}
 
+\begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:3}
+All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
+\end{lemma}\pause
+
 \begin{definition}
 We call a connected component of $R(C)$ \b{oriented} if it contains a red vertex or if it consists solely of an isolated blue vertex. \pause\spadding
 
@@ -699,41 +723,135 @@ Let $A$ be a connected component of $R(C)$. We denote by $A_u$ the subgraph of $
 If a connected component $A$ of $R(C)$ is oriented and not an isolated blue vertex, it contains a red vertex $u$ such that $A_u$ is still oriented.
 \end{lemma}
 
-\end{frame}
-
-\begin{frame}
-
 % \begin{definition}
 % A sequence of reversals that turns the connected component $A$ of $R(C)$ into an isolated blue vertex, is called an \b{elemination sequence} for $A$.
 % \end{definition}\pause
 
-\begin{lemma}[\citeauthor*{Christie1998}]
-\label{lem:6}
-Let $A$ be an oriented connected component of $R(C)$ arising from $k$ different cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains $k$ $2$-reversals with all the other reversals being $1$-reversals.
-\end{lemma}\pause
-
-\begin{proof}
-We know that
-\begin{itemize}
-    \item every vertex in $R(C)$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component (lemma \ref{lem:3})\pause;
-    \item  as $A$ is oriented, we can use lemma \ref{lem:4} to repeatedly find a red vertex $u$ in $A$ and apply $\rho(u)$\pause; and
-    \item $\rho(u)$ is a $2$-reversal iff $u$ arises from a $2$-cycle (lemma \ref{lem:2}).
-\end{itemize}\pause
-Every alternating cycle represented by vertices constituting $A$ eventually reduces to a $2$-cycle.
-\end{proof}
-
 \end{frame}
 
 \begin{frame}
 
-\begin{lemma}[\citeauthor*{Christie1998}]
-Let $A$ be an unoriented connected component of $R(C)$ arising from $k$ different cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains one $0$-reversal, $k$ $2$-reversals, with all the other reversals being $1$-reversals.
-\end{lemma}\pause
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide<3->{, $u_2 = \{2,3\}$.}\spadding
 
-\begin{proof}
-Let $\rho(u)$ be a $0$-reversal. Then $A_u$ is oriented (lemma \ref{lem:5}). \par\pause
-Now apply lemma \ref{lem:6} to obtain an elimination sequence for $A_u$.
-\end{proof}\pause
+\only<1>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}\spadding
+\only<1>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+		\draw (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}
+\only<2>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {3};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (2) to (3);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}\spadding
+\only<2>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=red node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}
+\only<3>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {3};
+		\node [style=node] (4) at (3, 0) {4};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}\spadding
+\only<3>{\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=blue node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}}
+\end{exampleblock}
+
+\end{frame}
+
+% \begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% \label{lem:6}
+% Let $A$ be an oriented connected component of $R(C)$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains $k$ $2$-reversals with all the other reversals being $1$-reversals.
+% \end{lemma}\pause
+
+% \begin{proof}
+% We know that
+% \begin{itemize}
+%     \item every vertex in $R(C)$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component (lemma \ref{lem:3})\pause;
+%     \item  as $A$ is oriented, we can use lemma \ref{lem:4} to repeatedly find a red vertex $u$ in $A$ and apply $\rho(u)$\pause; and
+%     \item $\rho(u)$ is a $2$-reversal iff $u$ arises from a $2$-cycle (lemma \ref{lem:2}).
+% \end{itemize}\pause
+% Every alternating cycle represented by vertices constituting $A$ eventually reduces to a $2$-cycle.
+% \end{proof}
+
+% \end{frame}
+
+\begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% Let $A$ be an unoriented connected component of $R(C)$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains one $0$-reversal, $k$ $2$-reversals, with all the other reversals being $1$-reversals.
+% \end{lemma}\pause
+
+% \begin{proof}
+% Let $\rho(u)$ be a $0$-reversal. Then $A_u$ is oriented (lemma \ref{lem:5}). \par\pause
+% Now apply lemma \ref{lem:6} to obtain an elimination sequence for $A_u$.
+% \end{proof}\pause
+
+Observations:
+\begin{itemize}
+    \item Every connected component $A$ arising from k different alternating cycles of $G(\pi)$, eventually reduces to a two cycle.\pause
+    \item There exists an elimination sequence of $A$ with $k$ $2$-reversals and remaining $1$-reversals.\pause
+    \item An unoriented connected component requires one initial $0$-reversal.
+\end{itemize}\spadding\pause
 
 \begin{theorem}[\citeauthor*{Christie1998}]
 \label{thm:4}
@@ -768,11 +886,7 @@ Goal: Find a cycle decomposition of $G(\pi)$ that has a large number of $2$-cycl
 We call a $2$-cycle \b{selected} if its corresponding edge of $F(\pi)$ is in $M$.\pause\spadding
 
 A selected $2$-cycle is called \b{independent} if it is not part of a ladder. Otherwise it is called a \b{ladder $2$-cycle}.
-\end{definition}
-
-\end{frame}
-
-\begin{frame}
+\end{definition}\pause\padding
 
 Let $z$ be the number of independent $2$-cycles, and $y$ the number of ladder $2$-cycles.\pause
 
@@ -781,10 +895,10 @@ Let $z$ be the number of independent $2$-cycles, and $y$ the number of ladder $2
 Given a maximum cardinality matching $M$ of $F(\pi)$ it is possible to find a cycle decomposition $C$ of $G(\pi)$ that contains at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
 \end{theorem}
 
-\begin{proof}
-Let $C$ contain all independent $2$-cycles from $L(M)$ and every alternate cycle of each ladder. \par\pause
-Obtain the rest of $C$ by adding any alternating cycle decomposition of the remaining unused edges of $G(\pi)$.
-\end{proof}
+% \begin{proof}
+% Let $C$ contain all independent $2$-cycles from $L(M)$ and every alternate cycle of each ladder. \par\pause
+% Obtain the rest of $C$ by adding any alternating cycle decomposition of the remaining unused edges of $G(\pi)$.
+% \end{proof}
 
 \end{frame}
 
@@ -826,15 +940,15 @@ By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals
 \begin{frame}
 
 \begin{proof}[Proof (cont.)]
-We know that
+To show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
 \begin{enumerate}
     \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles by $M$\pause;
-    \item $v \leq \left\lceil \frac{z}{2} \right\rceil$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
+    \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
     \item $|M| = y+z \geq c_2(\pi)$.
 \end{enumerate}\pause
 \begin{align*}
     k+l+m-v &\geq \left\lceil \frac{y}{2} \right\rceil + z - v                                          & (1) \\ \pause
-            &\geq \left\lceil \frac{y}{2} \right\rceil + z - \left\lceil \frac{z}{2} \right\rceil       & (2) \\ \pause
+            &\geq \left\lceil \frac{y}{2} \right\rceil + z - \left\lfloor \frac{z}{2} \right\rfloor     & (2) \\ \pause
             &= \left\lceil \frac{y}{2} \right\rceil + \left\lceil \frac{z}{2} \right\rceil \\ \pause
             &\geq \frac{c_2(\pi)}{2}                                                                    & (3)
 \end{align*}
@@ -842,8 +956,30 @@ We know that
 
 \end{frame}
 
+\begin{frame}
+
+Run time: $O(n^4)$, can be improved to $O(n^2)$.\spadding
+
+\begin{block}{Summary}
+\begin{itemize}
+    \item the number of alternating cycles in a breakpoint graph $G(\pi)$ are related to $d(\pi)$
+    \item a sorting sequence of reversals can be constructed from an alternating cycle decomposition of $G(\pi)$
+\end{itemize}
+\end{block}
+
+\begin{block}{Outlook}
+\begin{itemize}
+    \item there exists a $1.375$-approximation (\citeauthor*{Berman2001})
+    \item MIN-SBR for signed permutations is in $P$ (\citeauthor*{Hannenhalli1995})
+    \item MIN-SBR for signed permutations is in $P$ (\citeauthor*{Hannenhalli1995})
+\end{itemize}
+\end{block}
+
+\end{frame}
+
 \begin{frame}[allowframebreaks]{References}
 
+\nocite{*}
 \printbibliography
 
 \end{frame}
