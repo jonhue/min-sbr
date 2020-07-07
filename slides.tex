@@ -131,9 +131,11 @@ Given two permutations $\sigma, \tau \in S_n$ find a sequence of reversals $\rho
 \begin{align*}
     \sigma \circ \rho_1 \circ \cdots \circ \rho_d = \tau
 \end{align*}
-and $d$ is minimal. \pause\par\padding
+and $d$ is minimal. \pause\par\spadding
 $d$ is called \b{reversal distance} between $\sigma$ and $\tau$.
-\end{definition}
+\end{definition}\pause\padding
+
+Observation: The reversal distance between $\sigma$ and $\tau$ is the same as the reversal distance between $\tau^{-1} \circ \sigma$ and $id$.
 
 \end{frame}
 
@@ -141,20 +143,14 @@ $d$ is called \b{reversal distance} between $\sigma$ and $\tau$.
 
 \begin{frame}
 
-Observation: The reversal distance between $\sigma$ and $\tau$ is the same as the reversal distance between $\tau^{-1} \circ \sigma$ and $id$. \pause\padding
-
 \begin{definition}[MIN-SBR]
 Let $\pi = \tau^{-1} \circ \sigma \in S_n$. \par\pause
-\textit{Sorting by Reversals} is the problem of finding a sequence of reversals $\rho_1, \dots, \rho_d \in S_n$ such that
+\b{Sorting by Reversals} is the problem of finding a sequence of reversals $\rho_1, \dots, \rho_d \in S_n$ such that
 \begin{align*}
     \pi \circ \rho_1 \circ \cdots \circ \rho_d = id
 \end{align*}
 and $d$ is minimal.
-\end{definition}
-
-\end{frame}
-
-\begin{frame}
+\end{definition}\pause
 
 \begin{exampleblock}{Example}
 Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$.\pause
@@ -165,6 +161,10 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$.\pause
 $\implies d(\pi) \leq 2$.
 \end{exampleblock}
 
+\end{frame}
+
+% \begin{frame}
+
 % \begin{algorithm}[ratchet algorithm, \citeauthor*{Watterson19821}]
 % For each element at position $i$, perform $\rho(i, \pi_i^{-1})$ if $i \neq \pi_i$.
 % \end{algorithm}\pause
@@ -173,11 +173,13 @@ $\implies d(\pi) \leq 2$.
 % $d(\pi) \leq n - 1$ for all $\pi \in S_n$.
 % \end{corollary}
 
-\end{frame}
+% \end{frame}
 
 \section{Breakpoint graph}
 
 \begin{frame}
+
+A different perspective: $\pi = (0\ 1\ \r\mid\ 3\ 4\ \r\mid\ 2\ \r\mid\ 5)$\pause\spadding
 
 \begin{definition}
 Let $i \sim j$ if $|i - j| = 1$. \par\pause
@@ -435,7 +437,7 @@ Let $\pi \in S_n$. Then
 \end{align*}
 \end{theorem}\pause
 
-\begin{proof}\renewcommand{\qedsymbol}{}
+\begin{proof}
 Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of reversals from $\pi_t$ to $\pi_0$. \pause Then
 \begin{align*}
     d(\pi_i) &= d(\pi_{i-1}) + 1 \\ \pause
@@ -444,20 +446,13 @@ Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of
     d(\pi_i) - (b(\pi_i) - c(\pi_i)) &\geq d(\pi_{i-1}) - (b(\pi_{i-1}) - c(\pi_{i-1})) \\ \pause
                                      &\geq d(\pi_0) - (b(\pi_0) - c(\pi_0))\pause = 0
     \end{aligned}
-\end{align*}
+\end{align*}\pause
+Setting $i=t$, proves the theorem.
 \end{proof}
 
 \end{frame}
 
 \begin{frame}
-
-\begin{proof}[Proof (cont.)]
-Let $i = t$. Then
-\begin{align*}
-         && d(\pi) - (b(\pi) - c(\pi)) &\geq 0 \\ \pause
-    \iff && d(\pi)                     &\geq b(\pi) - c(\pi).
-\end{align*}
-\end{proof}\pause
 
 \begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
 \label{thm:3}
@@ -658,7 +653,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 
 \end{frame}
 
-\begin{frame}
+% \begin{frame}
 
 % \begin{corollary}[\citeauthor*{Christie1998}]
 % A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
@@ -668,7 +663,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 % $R(C)$ contains no isolated blue vertices arising from cycles in $C$.
 % \end{corollary}
 
-\end{frame}
+% \end{frame}
 
 \begin{frame}
 
@@ -940,7 +935,7 @@ By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals
 \begin{frame}
 
 \begin{proof}[Proof (cont.)]
-To show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
+Left to show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
 \begin{enumerate}
     \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles by $M$\pause;
     \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
@@ -962,7 +957,7 @@ Run time: $O(n^4)$, can be improved to $O(n^2)$.\spadding
 
 \begin{block}{Summary}
 \begin{itemize}
-    \item the number of alternating cycles in a breakpoint graph $G(\pi)$ are related to $d(\pi)$
+    \item the number of alternating cycles in a breakpoint graph $G(\pi)$ is related to $d(\pi)$
     \item a sorting sequence of reversals can be constructed from an alternating cycle decomposition of $G(\pi)$
 \end{itemize}
 \end{block}
@@ -970,7 +965,6 @@ Run time: $O(n^4)$, can be improved to $O(n^2)$.\spadding
 \begin{block}{Outlook}
 \begin{itemize}
     \item there exists a $1.375$-approximation (\citeauthor*{Berman2001})
-    \item MIN-SBR for signed permutations is in $P$ (\citeauthor*{Hannenhalli1995})
     \item MIN-SBR for signed permutations is in $P$ (\citeauthor*{Hannenhalli1995})
 \end{itemize}
 \end{block}
