@@ -182,7 +182,7 @@ $\implies d(\pi) \leq 2$.
 A different perspective: $\pi = (0\ 1\ \r\mid\ 3\ 4\ \r\mid\ 2\ \r\mid\ 5)$\pause\spadding
 
 \begin{definition}
-Let $i \sim j$ if $|i - j| = 1$. \par\pause
+Let $i \sim j$ if $|i - j| = 1$. \par
 A pair of consecutive elements $\pi_i$ and $\pi_j$ is
 \begin{itemize}
     \item an \b{adjacency} if $\pi_i \sim \pi_j$; and
@@ -843,7 +843,7 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 
 Observations:
 \begin{itemize}
-    \item Every connected component $A$ arising from k different alternating cycles of $G(\pi)$, eventually reduces to a two cycle.\pause
+    \item Every connected component $A$ arising from $k$ different alternating cycles of $G(\pi)$, eventually reduces to $k$ $2$-cycles.\pause
     \item There exists an elimination sequence of $A$ with $k$ $2$-reversals and remaining $1$-reversals.\pause
     \item An unoriented connected component requires one initial $0$-reversal.
 \end{itemize}\spadding\pause
@@ -937,7 +937,7 @@ By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals
 \begin{proof}[Proof (cont.)]
 Left to show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
 \begin{enumerate}
-    \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles by $M$\pause;
+    \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $C$\pause;
     \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
     \item $|M| = y+z \geq c_2(\pi)$.
 \end{enumerate}\pause
