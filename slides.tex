@@ -40,10 +40,11 @@
 
 \usepackage{tikz}
 \tikzstyle{node}=[fill=white, draw=black, shape=circle, minimum size=0.75cm]
-\tikzstyle{blue node}=[fill=white, draw=blue, shape=circle]
-\tikzstyle{red node}=[fill=white, draw=red, shape=circle]
-\tikzstyle{blue edge}=[-, draw=blue]
-\tikzstyle{red edge}=[-, draw=red]
+\tikzstyle{blue node}=[fill=white, draw=blue, shape=circle, line width=0.25mm]
+\tikzstyle{red node}=[fill=white, draw=red, shape=circle, line width=0.25mm]
+\tikzstyle{blue edge}=[-, draw=blue, line width=0.25mm]
+\tikzstyle{red edge}=[-, draw=red, line width=0.25mm]
+\tikzstyle{dashed edge}=[-, dashed, line width=0.25mm]
 \pgfdeclarelayer{nodelayer}
 \pgfdeclarelayer{edgelayer}
 \pgfsetlayers{nodelayer,edgelayer}
@@ -279,69 +280,69 @@ A reversal is called \b{$k$-reversal} if it removes $k$ breakpoints. \pause\spad
 
 A reversal \b{acts on} two red edges of $G(\pi)$ if those two edges represent the breakpoints that are split apart by the reversal. \pause\spadding
 
-An alternating cycle in $G(\pi)$ is a \b{$k$-cycle} if it has $k$ constituting red edges. \pause\spadding
-
-We call an alternating cycle $C$ in $G(\pi)$ \b{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges of $C$.
+An alternating cycle in $G(\pi)$ is a \b{$k$-cycle} if it has $k$ constituting red edges.
 \end{definition}
 
-\end{frame}
-
-\begin{frame}
-
-\begin{lemma}[\citeauthor*{Christie1998}]
-\label{lem:2}
-An oriented alternating cycle is a $2$-cycle iff the corresponding reversal acting on both red edges is a $2$-reversal.
-\end{lemma}\spadding
-
-Let $i \sim i'$ and $j \sim j'$.
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-	\begin{pgfonlayer}{nodelayer}
-		\node [style=node] (0) at (-1.25, 0) {i};
-		\node [style=node] (1) at (1.25, 0) {i'};
-		\node [style=node] (2) at (3, 0) {j'};
-		\node [style=node] (3) at (-3, 0) {j};
-		\node (4) at (0, 0) {$\dots$};
-		\node (5) at (-4.25, 0) {$\dots$};
-		\node (6) at (4.25, 0) {$\dots$};
-	\end{pgfonlayer}
-	\begin{pgfonlayer}{edgelayer}
-		\draw [style=blue edge, bend right] (2) to (3);
-		\draw [style=blue edge, bend left] (0) to (1);
-		\draw [style=red edge] (3) to (0);
-		\draw [style=red edge] (1) to (2);
-	\end{pgfonlayer}
-\end{tikzpicture}
-\end{center}
-\caption{Unoriented $2$-cycle}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-	\begin{pgfonlayer}{nodelayer}
-		\node [style=node] (0) at (-1.25, 0) {i};
-		\node [style=node] (1) at (1.25, 0) {j'};
-		\node [style=node] (2) at (3, 0) {i'};
-		\node [style=node] (3) at (-3, 0) {j};
-		\node (4) at (0, 0) {$\dots$};
-		\node (5) at (-4.25, 0) {$\dots$};
-		\node (6) at (4.25, 0) {$\dots$};
-	\end{pgfonlayer}
-	\begin{pgfonlayer}{edgelayer}
-		\draw [style=blue edge, bend right] (3) to (1);
-		\draw [style=blue edge, bend left] (0) to (2);
-		\draw [style=red edge] (3) to (0);
-		\draw [style=red edge] (1) to (2);
-	\end{pgfonlayer}
-\end{tikzpicture}
-\end{center}
-\caption{Oriented $2$-cycle}
-\end{figure}
+% We call an alternating cycle $C$ in $G(\pi)$ \b{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges of $C$.
 
 \end{frame}
+
+% \begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% \label{lem:2}
+% An oriented alternating cycle is a $2$-cycle iff the corresponding reversal acting on both red edges is a $2$-reversal.
+% \end{lemma}\spadding
+
+% Let $i \sim i'$ and $j \sim j'$.
+
+% \begin{figure}
+% \begin{center}
+% \begin{tikzpicture}
+% 	\begin{pgfonlayer}{nodelayer}
+% 		\node [style=node] (0) at (-1.25, 0) {i};
+% 		\node [style=node] (1) at (1.25, 0) {i'};
+% 		\node [style=node] (2) at (3, 0) {j'};
+% 		\node [style=node] (3) at (-3, 0) {j};
+% 		\node (4) at (0, 0) {$\dots$};
+% 		\node (5) at (-4.25, 0) {$\dots$};
+% 		\node (6) at (4.25, 0) {$\dots$};
+% 	\end{pgfonlayer}
+% 	\begin{pgfonlayer}{edgelayer}
+% 		\draw [style=blue edge, bend right] (2) to (3);
+% 		\draw [style=blue edge, bend left] (0) to (1);
+% 		\draw [style=red edge] (3) to (0);
+% 		\draw [style=red edge] (1) to (2);
+% 	\end{pgfonlayer}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Unoriented $2$-cycle}
+% \end{figure}
+
+% \begin{figure}
+% \begin{center}
+% \begin{tikzpicture}
+% 	\begin{pgfonlayer}{nodelayer}
+% 		\node [style=node] (0) at (-1.25, 0) {i};
+% 		\node [style=node] (1) at (1.25, 0) {j'};
+% 		\node [style=node] (2) at (3, 0) {i'};
+% 		\node [style=node] (3) at (-3, 0) {j};
+% 		\node (4) at (0, 0) {$\dots$};
+% 		\node (5) at (-4.25, 0) {$\dots$};
+% 		\node (6) at (4.25, 0) {$\dots$};
+% 	\end{pgfonlayer}
+% 	\begin{pgfonlayer}{edgelayer}
+% 		\draw [style=blue edge, bend right] (3) to (1);
+% 		\draw [style=blue edge, bend left] (0) to (2);
+% 		\draw [style=red edge] (3) to (0);
+% 		\draw [style=red edge] (1) to (2);
+% 	\end{pgfonlayer}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Oriented $2$-cycle}
+% \end{figure}
+
+% \end{frame}
 
 \begin{frame}
 
@@ -405,7 +406,7 @@ We consider each case $\r{b(\pi)} - \r{b(\pi \circ \rho)} \in [-2, 2]$ separatel
             		\draw [style=blue edge, bend right] (3) to (1);
             		\draw [style=red edge] (3) to (0);
             		\draw [style=red edge] (1) to (2);
-            		\draw [dashed, bend left] (0) to (2);
+            		\draw [style=dashed edge, bend left] (0) to (2);
             	\end{pgfonlayer}
             \end{tikzpicture} & $\rightarrow$ &
             \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
@@ -418,7 +419,7 @@ We consider each case $\r{b(\pi)} - \r{b(\pi \circ \rho)} \in [-2, 2]$ separatel
             	\end{pgfonlayer}
             	\begin{pgfonlayer}{edgelayer}
             		\draw [style=red edge] (1) to (2);
-            		\draw [dashed, bend left] (1) to (2);
+            		\draw [style=dashed edge, bend left] (1) to (2);
             	\end{pgfonlayer}
             \end{tikzpicture}
         \end{tabularx}
@@ -504,7 +505,7 @@ define $R(C)$ with
 Observation: The only alternating cycle decomposition of $G(id)$ is $C = \emptyset$.\pause
 
 \begin{corollary}[\citeauthor*{Christie1998}]
-$R(C)$ consists of $n+1$ isolated blue vertices.
+$R(\emptyset)$ consists of $n+1$ isolated blue vertices.
 \end{corollary}
 
 \end{frame}
