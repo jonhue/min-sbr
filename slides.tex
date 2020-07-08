@@ -53,6 +53,7 @@
 \def\spadding{\vspace{0.25cm}}
 \def\b{\textcolor{blue}}
 \def\r{\textcolor{red}}
+\def\g#1{{\usebeamercolor[fg]{block title example}{#1}}}
 
 % fix for \pause in align
 \makeatletter
@@ -188,13 +189,13 @@ A pair of consecutive elements $\pi_i$ and $\pi_j$ is
     \item an \b{adjacency} if $\pi_i \sim \pi_j$; and
     \item a \b{breakpoint} if $\pi_i \not\sim \pi_j$.
 \end{itemize} \par\pause\spadding
-$b(\pi)$ denotes the number of breakpoints in $\pi \in S_n$.
+$\r{b(\pi)}$ denotes the number of breakpoints in $\pi \in S_n$.
 \end{definition}\pause\padding
 
-Observation: $b(\pi) = 0$ iff $\pi = id$ \pause and any reversal can at most eliminate two breakpoints. \pause\spadding
+Observation: $\r{b(\pi)} = 0$ iff $\pi = id$ \pause and any reversal can at most eliminate two breakpoints. \pause\spadding
 
 \begin{corollary}[lower bound, \citeauthor*{Kececioglu1995}]
-$d(\pi) \geq \left\lceil \frac{b(\pi)}{2} \right\rceil$ for all $\pi \in S_n$.
+$d(\pi) \geq \left\lceil \frac{\r{b(\pi)}}{2} \right\rceil$ for all $\pi \in S_n$.
 \end{corollary}
 
 \end{frame}
@@ -299,29 +300,6 @@ Let $i \sim i'$ and $j \sim j'$.
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-1.25, 0) {i};
-		\node [style=node] (1) at (1.25, 0) {j'};
-		\node [style=node] (2) at (3, 0) {i'};
-		\node [style=node] (3) at (-3, 0) {j};
-		\node (4) at (0, 0) {$\dots$};
-		\node (5) at (-4.25, 0) {$\dots$};
-		\node (6) at (4.25, 0) {$\dots$};
-	\end{pgfonlayer}
-	\begin{pgfonlayer}{edgelayer}
-		\draw [style=blue edge, bend right] (3) to (1);
-		\draw [style=blue edge, bend left] (0) to (2);
-		\draw [style=red edge] (3) to (0);
-		\draw [style=red edge] (1) to (2);
-	\end{pgfonlayer}
-\end{tikzpicture}
-\end{center}
-\caption{Oriented $2$-cycle}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-	\begin{pgfonlayer}{nodelayer}
-		\node [style=node] (0) at (-1.25, 0) {i};
 		\node [style=node] (1) at (1.25, 0) {i'};
 		\node [style=node] (2) at (3, 0) {j'};
 		\node [style=node] (3) at (-3, 0) {j};
@@ -340,17 +318,40 @@ Let $i \sim i'$ and $j \sim j'$.
 \caption{Unoriented $2$-cycle}
 \end{figure}
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-1.25, 0) {i};
+		\node [style=node] (1) at (1.25, 0) {j'};
+		\node [style=node] (2) at (3, 0) {i'};
+		\node [style=node] (3) at (-3, 0) {j};
+		\node (4) at (0, 0) {$\dots$};
+		\node (5) at (-4.25, 0) {$\dots$};
+		\node (6) at (4.25, 0) {$\dots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=blue edge, bend right] (3) to (1);
+		\draw [style=blue edge, bend left] (0) to (2);
+		\draw [style=red edge] (3) to (0);
+		\draw [style=red edge] (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\caption{Oriented $2$-cycle}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}
 
-Let $c(\pi)$ denote the maximum number of alternating cycles in any alternating cycle decomposition of $G(\pi)$. \pause\padding
+Let $\g{c(\pi)}$ denote the maximum number of alternating cycles in any alternating cycle decomposition of $G(\pi)$. \pause\padding
 
 \begin{theorem}[\citeauthor*{Bafna1996}]
 \label{thm:1}
 Let $\pi, \rho \in S_n$ and $\rho$ be a reversal. \pause Then
 \begin{align*}
-    b(\pi) - b(\pi \circ \rho) + c(\pi \circ \rho) - c(\pi) \leq 1.
+    \r{b(\pi)} - \r{b(\pi \circ \rho)} + \g{c(\pi \circ \rho)} - \g{c(\pi)} \leq 1.
 \end{align*}
 \end{theorem}
 
@@ -359,8 +360,8 @@ Let $\pi, \rho \in S_n$ and $\rho$ be a reversal. \pause Then
 \begin{frame}
 
 \begin{proof}
-To show: $b(\pi) - b(\pi \circ \rho) + c(\pi \circ \rho) - c(\pi) \leq 1$. \par
-We consider each case $b(\pi) - b(\pi \circ \rho) \in [-2, 2]$ separately.\pause
+To show: $\r{b(\pi)} - \r{b(\pi \circ \rho)} + \g{c(\pi \circ \rho)} - \g{c(\pi)} \leq 1$. \par
+We consider each case $\r{b(\pi)} - \r{b(\pi \circ \rho)} \in [-2, 2]$ separately.\pause
 \begin{enumerate}
     \item A $2$-reversal removes at least one alternating cycle from the maximum alternating cycle decomposition.
         \begin{tabularx}{\textwidth}{XcX}
@@ -433,7 +434,7 @@ Proof for other cases similar.
 \label{thm:2}
 Let $\pi \in S_n$. Then
 \begin{align*}
-    d(\pi) \geq b(\pi) - c(\pi).
+    d(\pi) \geq \r{b(\pi)} - \g{c(\pi)}.
 \end{align*}
 \end{theorem}\pause
 
@@ -441,10 +442,10 @@ Let $\pi \in S_n$. Then
 Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of reversals from $\pi_t$ to $\pi_0$. \pause Then
 \begin{align*}
     d(\pi_i) &= d(\pi_{i-1}) + 1 \\ \pause
-             \overset{(\ref{thm:1})}&{\geq} d(\pi_{i-1}) + b(\pi_i) - b(\pi_{i-1}) + c(\pi_{i-1}) - c(\pi_i) \\[0.25cm] \pause
+             \overset{(\ref{thm:1})}&{\geq} d(\pi_{i-1}) + \r{b(\pi_i)} - \r{b(\pi_{i-1})} + \g{c(\pi_{i-1})} - \g{c(\pi_i)} \\[0.25cm] \pause
     \iff & \begin{aligned}[t]
-    d(\pi_i) - (b(\pi_i) - c(\pi_i)) &\geq d(\pi_{i-1}) - (b(\pi_{i-1}) - c(\pi_{i-1})) \\ \pause
-                                     &\geq d(\pi_0) - (b(\pi_0) - c(\pi_0))\pause = 0
+    d(\pi_i) - (\r{b(\pi_i)} - \g{c(\pi_i)}) &\geq d(\pi_{i-1}) - (\r{b(\pi_{i-1})} - \g{c(\pi_{i-1})}) \\ \pause
+                                     &\geq d(\pi_0) - (\r{b(\pi_0)} - \g{c(\pi_0)})\pause = 0
     \end{aligned}
 \end{align*}\pause
 Setting $i=t$, proves the theorem.
@@ -456,9 +457,9 @@ Setting $i=t$, proves the theorem.
 
 \begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
 \label{thm:3}
-Let $\pi \in S_n$ and $C$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $c_2(\pi)$ be the minimum number of alternating $2$-cycles in any such $C$. Then
+Let $\pi \in S_n$ and $C$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $\g{c_2(\pi)}$ be the minimum number of alternating $2$-cycles in any such $C$. Then
 \begin{align*}
-    d(\pi) \geq \frac{2}{3} b(\pi) - \frac{1}{3} c_2(\pi).
+    d(\pi) \geq \frac{2}{3} \r{b(\pi)} - \frac{1}{3} \g{c_2(\pi)}.
 \end{align*}
 \end{theorem}
 
@@ -469,7 +470,7 @@ Let $\pi \in S_n$ and $C$ be a maximum alternating cycle decomposition of $G(\pi
 \begin{frame}
 
 \begin{block}{$\frac{3}{2}$-approximation}
-By theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals of at most length $b(\pi) - \frac{1}{2} c_2(\pi)$ achieves an approximation bound of $\frac{3}{2}$. \pause\spadding
+By theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals of at most length $\r{b(\pi)} - \frac{1}{2} \g{c_2(\pi)}$ achieves an approximation bound of $\frac{3}{2}$. \pause\spadding
 
 We find such an algorithm in two steps:
 \begin{enumerate}
@@ -672,8 +673,9 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected component of $R(C)$ with vertices arising from at least one more alternating cycle of $C$.
 \end{lemma}
 
+\begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {};
 		\node [style=node] (1) at (-1.25, 0) {};
@@ -690,13 +692,15 @@ Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected comp
 		\draw [style=red edge] (2) to (3);
 	\end{pgfonlayer}
 \end{tikzpicture}
-\end{center}\pause
+\end{center}
+\caption{Unoriented $2$-cycle}
+\end{figure}
 
-\begin{proof}
-Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $C$. \par\pause
-Then its two constituting blue edges do not interleave. Hence, $R(C)$ does not connect $u$ and $v$ with an edge. \par\pause
-If its constituting blue edges do not interleave with blue edges of any other alternating cycle of $C$, then $u$ and $v$ would be isolated blue vertices. \b{$\lightning$}
-\end{proof}
+% \begin{proof}
+% Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $C$. \par\pause
+% Then its two constituting blue edges do not interleave. Hence, $R(C)$ does not connect $u$ and $v$ with an edge. \par\pause
+% If its constituting blue edges do not interleave with blue edges of any other alternating cycle of $C$, then $u$ and $v$ would be isolated blue vertices. \b{$\lightning$}
+% \end{proof}
 
 \end{frame}
 
@@ -852,7 +856,7 @@ Observations:
 \label{thm:4}
 Let $\pi \in S_n$ and $C$ be a cycle decomposition of $G(\pi)$. Then
 \begin{align*}
-    d(\pi) \leq b(\pi) - |C| + u(C)
+    d(\pi) \leq \r{b(\pi)} - |C| + u(C)
 \end{align*}
 where $u(C)$ is the number of unoriented components in $R(C)$.
 \end{theorem}
@@ -905,7 +909,7 @@ Given a maximum cardinality matching $M$ of $F(\pi)$ it is possible to find a cy
 \label{thm:6}
 Let $\pi \in S_n$. Then
 \begin{align*}
-    d(\pi) \leq b(\pi) - \frac{1}{2} c_2(\pi).
+    d(\pi) \leq \r{b(\pi)} - \frac{1}{2} \g{c_2(\pi)}.
 \end{align*}
 \end{theorem}\pause
 
@@ -925,9 +929,10 @@ Using theorem \ref{thm:5}, first find an alternating cycle decomposition $C$ of 
 \end{itemize}\pause
 By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals and only $u+v$ $0$-reversals. \pause Therefore
 \begin{align*}
-    d(\pi) &\leq b(\pi) - k - l - u - m + u + v \\
-           &= b(\pi) - k - l - m + v
-\end{align*}
+    d(\pi) &\leq \r{b(\pi)} - k - l - u - m + u + v \\
+           &= \r{b(\pi)} - k - l - m + v
+\end{align*}\pause
+Left to show: $-k-l-m+v \leq - \frac{1}{2} \g{c_2(\pi)}$.
 \end{proof}
 
 \end{frame}
@@ -935,7 +940,7 @@ By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals
 \begin{frame}
 
 \begin{proof}[Proof (cont.)]
-Left to show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
+Left to show: $k+l+m-v \geq \frac{1}{2} \g{c_2(\pi)}$. \pause We know that
 \begin{enumerate}
     \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $C$\pause;
     \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
@@ -945,7 +950,7 @@ Left to show: $k+l+m-v \geq \frac{c_2(\pi)}{2}$. \pause We know that
     k+l+m-v &\geq \left\lceil \frac{y}{2} \right\rceil + z - v                                          & (1) \\ \pause
             &\geq \left\lceil \frac{y}{2} \right\rceil + z - \left\lfloor \frac{z}{2} \right\rfloor     & (2) \\ \pause
             &= \left\lceil \frac{y}{2} \right\rceil + \left\lceil \frac{z}{2} \right\rceil \\ \pause
-            &\geq \frac{c_2(\pi)}{2}                                                                    & (3)
+            &\geq \frac{1}{2} \g{c_2(\pi)}                                                              & (3)
 \end{align*}
 \end{proof}
 
