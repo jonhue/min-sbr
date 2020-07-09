@@ -670,6 +670,11 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 \begin{frame}
 
 \begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:3}
+All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
+\end{lemma}\pause
+
+\begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:7}
 Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected component of $R(C)$ with vertices arising from at least one more alternating cycle of $C$.
 \end{lemma}
@@ -707,11 +712,6 @@ Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected comp
 
 \begin{frame}
 
-\begin{lemma}[\citeauthor*{Christie1998}]
-\label{lem:3}
-All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
-\end{lemma}\pause
-
 \begin{definition}
 We call a connected component of $R(C)$ \b{oriented} if it contains a red vertex or if it consists solely of an isolated blue vertex. \pause\spadding
 
@@ -732,9 +732,9 @@ If a connected component $A$ of $R(C)$ is oriented and not an isolated blue vert
 \begin{frame}
 
 \begin{exampleblock}{Example (elimination sequence)}
-Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide<3->{, $u_2 = \{2,3\}$.}\spadding
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\spadding
 
-\only<1>{\begin{center}\begin{tikzpicture}
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
 		\node [style=node] (1) at (-1.5, 0) {1};
@@ -751,8 +751,8 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 		\draw [style=blue edge, bend left] (2) to (4);
 		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}\spadding
-\only<1>{\begin{center}\begin{tikzpicture}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
 		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
@@ -764,8 +764,17 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 		\draw (0) to (2);
 		\draw (1) to (2);
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}
-\only<2>{\begin{center}\begin{tikzpicture}
+\end{tikzpicture}\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$\spadding
+
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
 		\node [style=node] (1) at (-1.5, 0) {1};
@@ -780,8 +789,8 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 		\draw [style=blue edge, bend left] (2) to (4);
 		\draw [style=blue edge, bend left] (3) to (5);
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}\spadding
-\only<2>{\begin{center}\begin{tikzpicture}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
 		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
@@ -792,8 +801,17 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (2);
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}
-\only<3>{\begin{center}\begin{tikzpicture}
+\end{tikzpicture}\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$, $u_2 = \{2,3\}$.\spadding
+
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
 		\node [style=node] (1) at (-1.5, 0) {1};
@@ -802,8 +820,8 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 		\node [style=node] (4) at (3, 0) {4};
 		\node [style=node] (5) at (4.5, 0) {5};
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}\spadding
-\only<3>{\begin{center}\begin{tikzpicture}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=blue node] (0) at (0, 1) {$\{2,3\}$};
 		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
@@ -811,7 +829,7 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\onslide<2->{ and $u_1 = \{1,2\}$}\onslide
 		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
 		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
 	\end{pgfonlayer}
-\end{tikzpicture}\end{center}}
+\end{tikzpicture}\end{center}
 \end{exampleblock}
 
 \end{frame}
