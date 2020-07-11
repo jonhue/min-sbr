@@ -98,7 +98,7 @@ Let $i \sim j$ if $|i - j| = 1$. A pair of consecutive elements $\pi_i$ and $\pi
 
 \begin{figure}
     \begin{align*}
-        \pi = (1\ \mid\ 3\ 4\ \mid\ 2)
+        \pi = (7\ \mid\ 5\ 6\ \mid\ 3\ 2\ \mid\ 4\ \mid\ 1)
     \end{align*}
     \caption{Breakpoints (breakpoints marked by vertical bars)}
     \label{fig:breakpoints}
@@ -132,27 +132,36 @@ The \textit{breakpoint graph} $G(\pi)$ has as vertices the elements of the permu
     \centering
     \begin{tikzpicture}
     	\begin{pgfonlayer}{nodelayer}
-    		\node [style=node] (0) at (-3, 0) {0};
-    		\node [style=node] (1) at (-1.5, 0) {1};
-    		\node [style=node] (2) at (0, 0) {3};
-    		\node [style=node] (3) at (1.5, 0) {4};
-    		\node [style=node] (4) at (3, 0) {2};
-    		\node [style=node] (5) at (4.5, 0) {5};
+    		\node [style=node] (0) at (-6, 0) {0};
+    		\node [style=node] (1) at (-4.5, 0) {7};
+    		\node [style=node] (2) at (-3, 0) {5};
+    		\node [style=node] (3) at (-1.5, 0) {6};
+    		\node [style=node] (4) at (0, 0) {3};
+    		\node [style=node] (5) at (1.5, 0) {2};
+    		\node [style=node] (6) at (3, 0) {4};
+    		\node [style=node] (7) at (4.5, 0) {1};
+    		\node [style=node] (8) at (6, 0) {8};
     	\end{pgfonlayer}
     	\begin{pgfonlayer}{edgelayer}
+    		\draw [style=red edge] (0) to (1);
     		\draw [style=red edge] (1) to (2);
     		\draw [style=red edge] (3) to (4);
-    		\draw [style=red edge] (4) to (5);
-    		\draw [style=blue edge, bend right] (1) to (4);
-    		\draw [style=blue edge, bend left] (2) to (4);
-    		\draw [style=blue edge, bend left] (3) to (5);
+    		\draw [style=red edge] (5) to (6);
+    		\draw [style=red edge] (6) to (7);
+    		\draw [style=red edge] (7) to (8);
+    		\draw [style=blue edge, bend left] (0) to (7);
+    		\draw [style=blue edge, bend left] (1) to (3);
+    		\draw [style=blue edge, bend left] (4) to (6);
+    		\draw [style=blue edge, bend right] (1) to (8);
+    		\draw [style=blue edge, bend right] (2) to (6);
+    		\draw [style=blue edge, bend right] (5) to (7);
     	\end{pgfonlayer}
     \end{tikzpicture}
     \caption{Breakpoint graph}
     \label{fig:breakpoint_graph}
 \end{figure}
 
-The red edges in the breakpoint graph identify the elements of $\pi$ that have to be split apart and the blue edges identify the elements of $\pi$ that have to be brought together in the process of sorting the permutation $\pi$ (the missing adjacencies). Figure \ref{fig:breakpoint_graph} shows the breakpoint graph of the permutation $(0\ 1\ 3\ 4\ 2\ 5)$.
+The red edges in the breakpoint graph identify the elements of $\pi$ that have to be split apart and the blue edges identify the elements of $\pi$ that have to be brought together in the process of sorting the permutation $\pi$ (the missing adjacencies). Figure \ref{fig:breakpoint_graph} shows the breakpoint graph of the permutation $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$.
 
 An \textit{alternating cycle decomposition} of $G(\pi)$ is a set of edge-disjoint alternating cycles, such that every edge of $G(\pi)$ is contained in exactly one cycle of the set. We observe that for every breakpoint, a vertice in $G(\pi)$ must have a missing adjacency. And conversely, for every missing adjacency a vertex in $G(\pi)$ must form a breakpoint. Therefore, each vertex in our breakpoint graph has an equal number of incident red and blue edges.
 
@@ -164,7 +173,7 @@ The main result we prove in this section, relates the maximum number of alternat
 
 First, we need to define some terminology. An alternating cycle in $G(\pi)$ is a \textit{$k$-cycle} if it has $k$ constituting red and $k$ constituting blue edges. We say, a reversal \textit{acts on} two red edges of $G(\pi)$ if those two red edges represent the breakpoints that are split apart by the reversal. Now, an alternating cycle in $G(\pi)$ is \textit{oriented} if there is a $1$- or a $2$-reversal acting on two constituting red edges. An alternating cycle of $G(\pi)$ is \textit{unoriented} if it is not oriented.
 
-To give a more visual means of deducing whether an alternating cycle of $G(\pi)$ is oriented, we assign to each red edge $(\pi_i, \pi_{i+1})$ an orientation from $\pi_i$ to $\pi_{i+1}$, orienting red edges of $G(\pi)$ from the endpoint which appears first in $\pi$ to the endpoint which appears second. Then, we call an alternating cycle of $G(\pi)$ \textit{directed} with respect to $\pi$ if it is possible to walk along the whole cycle traversing each red edge in the direction of its orientation. An alternating cycle of $G(\pi)$ is called \textit{undirected} if it is not directed. For example, in figure \ref{fig:breakpoint_graph} the alternating cycle $(\{1,3\},\{2,3\},\{2,5\},\{4,5\},\{2,4\},\{1,2\})$ is directed with respect to $(0\ 1\ 3\ 4\ 2\ 5)$, whereas the alternating cycle $(\{1,3\},\{2,3\},\{2,4\},\{4,5\},\{2,5\},\{1,2\})$ is undirected with respect to $(0\ 1\ 3\ 4\ 2\ 5)$. \citeauthor*{Caprara1997} argues that an alternating cycle of $G(\pi)$ is oriented if and only if it is undirected \cite{Caprara1997}.
+To give a more visual means of deducing whether an alternating cycle of $G(\pi)$ is oriented, we assign to each red edge $(\pi_i, \pi_{i+1})$ an orientation from $\pi_i$ to $\pi_{i+1}$, orienting red edges of $G(\pi)$ from the endpoint which appears first in $\pi$ to the endpoint which appears second. Then, we call an alternating cycle of $G(\pi)$ \textit{directed} with respect to $\pi$ if it is possible to walk along the whole cycle traversing each red edge in the direction of its orientation. An alternating cycle of $G(\pi)$ is called \textit{undirected} if it is not directed. For example, in figure \ref{fig:breakpoint_graph} the alternating cycle $(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\})$ is directed with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$, whereas the alternating cycle $(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})$ is undirected with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. \citeauthor*{Caprara1997} argues that an alternating cycle of $G(\pi)$ is oriented if and only if it is undirected \cite{Caprara1997}.
 
 \begin{lemma}
 \label{lem:1}
@@ -415,15 +424,23 @@ Two cycles $C$ and $D$ \textit{interleave} if the reversal graph contains vertic
     \centering
     \begin{tikzpicture}
     	\begin{pgfonlayer}{nodelayer}
-    		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+    		\node [style=red node] (0) at (-4, 1) {$\{4,5\}$};
     		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
-    		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
-    		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
-    		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+    		\node [style=blue node] (2) at (0, 1) {$\{7,8\}$};
+    		\node [style=blue node] (3) at (2, 1) {$\{5,6\}$};
+    		\node [style=blue node] (4) at (-4, -1) {$\{6,7\}$};
+    		\node [style=blue node] (5) at (-2, -1) {$\{3,4\}$};
+    		\node [style=blue node] (6) at (0, -1) {$\{0,1\}$};
+    		\node [style=blue node] (7) at (2, -1) {$\{2,3\}$};
     	\end{pgfonlayer}
     	\begin{pgfonlayer}{edgelayer}
-    		\draw (0) to (2);
-    		\draw (1) to (2);
+    		\draw (0) to (4);
+    		\draw (0) to (1);
+    		\draw (0) to (5);
+    		\draw (1) to (5);
+    		\draw (1) to (6);
+    		\draw (2) to (4);
+    		\draw (2) to (6);
     	\end{pgfonlayer}
     \end{tikzpicture}
     \caption{Reversal graph}
@@ -433,10 +450,10 @@ Two cycles $C$ and $D$ \textit{interleave} if the reversal graph contains vertic
 \begin{example}
 Consider the alternating cycle decomposition
 \begin{align*}
-    \mathcal{C} = \{(&\{1,3\},\{2,3\},\{2,4\}, \\
-                     &\{4,5\},\{2,5\},\{1,2\})\}
+    \mathcal{C} = \{&(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\}), \\
+                    &(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})\}
 \end{align*}
-of the breakpoint graph of $(0\ 1\ 3\ 4\ 2\ 5)$. The corresponding reversal graph is given in figure \ref{fig:reversal_graph}.
+of the breakpoint graph of $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. The corresponding reversal graph is given in figure \ref{fig:reversal_graph}.
 \end{example}
 
 We observe that the only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$. And therefore, the only reversal graph of the identity permutation $R(\emptyset)$ consists of $n+1$ isolated blue vertices. In the remainder of this section, our goal is to describe a way of transforming the reversal graph of a given alternating cycle decomposition into the reversal graph only consisting of isolated blue vertices with as few reversals as possible. For that purpose, we first examine the effects of single reversals on the reversal graph.\padding
@@ -457,20 +474,29 @@ $R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following 
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \begin{tikzpicture}
     	\begin{pgfonlayer}{nodelayer}
-    		\node [style=node] (0) at (-3, 0) {0};
-    		\node [style=node] (1) at (-1.5, 0) {1};
-    		\node [style=node] (2) at (0, 0) {2};
-    		\node [style=node] (3) at (1.5, 0) {4};
-    		\node [style=node] (4) at (3, 0) {3};
-    		\node [style=node] (5) at (4.5, 0) {5};
+    		\node [style=node] (0) at (-6, 0) {0};
+    		\node [style=node] (1) at (-4.5, 0) {7};
+    		\node [style=node] (2) at (-3, 0) {2};
+    		\node [style=node] (3) at (-1.5, 0) {3};
+    		\node [style=node] (4) at (0, 0) {6};
+    		\node [style=node] (5) at (1.5, 0) {5};
+    		\node [style=node] (6) at (3, 0) {4};
+    		\node [style=node] (7) at (4.5, 0) {1};
+    		\node [style=node] (8) at (6, 0) {8};
     	\end{pgfonlayer}
     	\begin{pgfonlayer}{edgelayer}
-    		\draw [style=red edge] (2) to (3);
-    		\draw [style=red edge] (4) to (5);
-    		\draw [style=blue edge, bend left] (2) to (4);
-    		\draw [style=blue edge, bend left] (3) to (5);
+    		\draw [style=red edge] (0) to (1);
+    		\draw [style=red edge] (1) to (2);
+    		\draw [style=red edge] (3) to (4);
+    		\draw [style=red edge] (6) to (7);
+    		\draw [style=red edge] (7) to (8);
+    		\draw [style=blue edge, bend left] (0) to (7);
+    		\draw [style=blue edge, bend left] (1) to (4);
+    		\draw [style=blue edge, bend left] (3) to (6);
+    		\draw [style=blue edge, bend right] (1) to (8);
+    		\draw [style=blue edge, bend right] (2) to (7);
     	\end{pgfonlayer}
     \end{tikzpicture}
     \caption{Resulting breakpoint graph}
@@ -479,16 +505,23 @@ $R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following 
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \begin{tikzpicture}
     	\begin{pgfonlayer}{nodelayer}
-    		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+    		\node [style=blue node] (0) at (-4, 1) {$\{4,5\}$};
     		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
-    		\node [style=red node] (2) at (-1, -1) {$\{4,5\}$};
-    		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
-    		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+    		\node [style=blue node] (2) at (0, 1) {$\{7,8\}$};
+    		\node [style=blue node] (3) at (2, 1) {$\{5,6\}$};
+    		\node [style=red node] (4) at (-4, -1) {$\{6,7\}$};
+    		\node [style=red node] (5) at (-2, -1) {$\{3,4\}$};
+    		\node [style=blue node] (6) at (0, -1) {$\{0,1\}$};
+    		\node [style=blue node] (7) at (2, -1) {$\{2,3\}$};
     	\end{pgfonlayer}
     	\begin{pgfonlayer}{edgelayer}
-    		\draw (0) to (2);
+    		\draw (1) to (4);
+    		\draw (1) to (6);
+    		\draw (2) to (4);
+    		\draw (2) to (6);
+    		\draw (4) to (5);
     	\end{pgfonlayer}
     \end{tikzpicture}
     \caption{Resulting reversal graph}
@@ -496,12 +529,12 @@ $R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following 
 \end{figure}
 
 \begin{example}
-Applying the reversal represented by vertex $\{1,2\}$ in figure \ref{fig:reversal_graph} results in the breakpoint and reversal graphs shown in figures \ref{fig:breakpoint_graph_change} and \ref{fig:reversal_graph_change} respectively.
+Applying the reversal represented by vertex $\{4,5\}$ in figure \ref{fig:reversal_graph} results in the breakpoint and reversal graphs shown in figures \ref{fig:breakpoint_graph_change} and \ref{fig:reversal_graph_change} respectively.
 \end{example}
 
 \begin{corollary}
 A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
-\end{corollary}
+\end{corollary}\padding
 
 We now consider a couple of lemmas that will help use prove the approximation bound later.
 
