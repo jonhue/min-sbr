@@ -2,6 +2,6 @@
 
 Exploring approximation algorithms for the problem of Sorting by Reversals.
 
+* [paper](https://raw.githubusercontent.com/jonhue/min-sbr/master/paper.pdf)
 * [handout](https://raw.githubusercontent.com/jonhue/min-sbr/master/handout.pdf)
-<!-- * [paper](https://raw.githubusercontent.com/jonhue/min-sbr/master/paper.pdf) -->
 * [slides](https://raw.githubusercontent.com/jonhue/min-sbr/master/slides.pdf)
