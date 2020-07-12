@@ -36,7 +36,6 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}{Example}[theorem]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
@@ -98,7 +97,7 @@ Let $i \sim j$ if $|i - j| = 1$. A pair of consecutive elements $\pi_i$ and $\pi
 
 \begin{figure}
     \begin{align*}
-        \pi = (7\ \mid\ 5\ 6\ \mid\ 3\ 2\ \mid\ 4\ \mid\ 1)
+        (7\ \mid\ 5\ 6\ \mid\ 3\ 2\ \mid\ 4\ \mid\ 1)
     \end{align*}
     \caption{Breakpoints (breakpoints marked by vertical bars)}
     \label{fig:breakpoints}
@@ -373,7 +372,7 @@ Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of
 Setting $i=t$, proves the theorem.
 \end{proof}
 
-Using this lower bound, \citeauthor*{Bafna1996} already describe a $\frac{7}{4}$-approximation that is not considered in more detail here. \citeauthor*{Christie1998} formulated a lower bound in terms of the number of $2$-cycles in a maximum alternating cycle decomposition \cite{Christie1998}.
+Using this lower bound, \citeauthor*{Bafna1996} already describe a $7/4$-approximation that is not considered in more detail here. \citeauthor*{Christie1998} formulated a lower bound in terms of the number of $2$-cycles in a maximum alternating cycle decomposition \cite{Christie1998}.
 
 \begin{lemma}
 \label{lem:2}
@@ -385,7 +384,7 @@ Then
 \end{lemma}
 
 \begin{proof}
-$b(\pi)$ is the number of red edges in $G(\pi)$ and $c_2(\pi)$ is the number of red edges in $2$-cycles of $G(\pi)$. Therefore, $b(\pi) - 2 c_2(\pi)$ is the number of \textit{free} red edges in $G(\pi)$ not occurring in $2$-cycles. $3 c_{3*}(\pi)$ is a lower bound to the number of red edges in $G(\pi)$ not occurring in $2$-cycles as every such cycle has at least three constituting red edges, proving the lemma.
+$b(\pi)$ is the number of red edges in $G(\pi)$ and $c_2(\pi)$ is the number of red edges in $2$-cycles of $G(\pi)$. Therefore, $b(\pi) - 2 c_2(\pi)$ is the number of red edges in $G(\pi)$ not occurring in $2$-cycles. $3 c_{3*}(\pi)$ is a lower bound to the number of red edges in $G(\pi)$ not occurring in $2$-cycles as every such cycle has at least three constituting red edges, proving the lemma.
 \end{proof}
 
 \begin{theorem}
@@ -447,14 +446,12 @@ Two cycles $C$ and $D$ \textit{interleave} if the reversal graph contains vertic
     \label{fig:reversal_graph}
 \end{figure}
 
-\begin{example}
 Consider the alternating cycle decomposition
 \begin{align*}
     \mathcal{C} = \{&(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\}), \\
                     &(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})\}
 \end{align*}
-of the breakpoint graph of $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. The corresponding reversal graph is given in figure \ref{fig:reversal_graph}.
-\end{example}
+of the breakpoint graph of $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. The corresponding reversal graph is given in figure \ref{fig:reversal_graph}.\padding
 
 We observe that the only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$. And therefore, the only reversal graph of the identity permutation $R(\emptyset)$ consists of $n+1$ isolated blue vertices. In the remainder of this section, our goal is to describe a way of transforming the reversal graph of a given alternating cycle decomposition into the reversal graph only consisting of isolated blue vertices with as few reversals as possible. For that purpose, we first examine the effects of single reversals on the reversal graph.\padding
 
@@ -528,9 +525,7 @@ $R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following 
     \label{fig:reversal_graph_change}
 \end{figure}
 
-\begin{example}
 Applying the reversal represented by vertex $\{4,5\}$ in figure \ref{fig:reversal_graph} results in the breakpoint and reversal graphs shown in figures \ref{fig:breakpoint_graph_change} and \ref{fig:reversal_graph_change} respectively.
-\end{example}
 
 \begin{corollary}
 A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
