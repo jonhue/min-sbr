@@ -50,12 +50,12 @@
 \maketitle
 
 \begin{abstract}
-    A reversal is a transformation, reversing the order of elements of a permutation. Sorting by reversals is the problem of finding the shortest sequence of reversals transforming a permutation to the identity. The length of such a sequence is said to be the reversal distance of that permutation. In this paper we introduce important concepts used in the literature on this topic. In particular, we introduce the fundamental relationship between the reversal distance and the number of alternating cycles in a cycle decomposition of a suitably-defined bi-colored graph. Then, a $3/2$-approximation is discussed in detail. We also reference further related research.
+    A reversal is a transformation, reversing the order of elements of a permutation. Sorting by reversals is the problem of finding the shortest sequence of reversals transforming a permutation to the identity. The length of such a sequence is said to be the reversal distance of that permutation. In this paper we introduce important concepts used in the literature on this topic. In particular, we introduce the fundamental relationship between the reversal distance and the number of alternating cycles in a cycle decomposition of a suitably-defined bi-colored graph. Then, a $3/2$-approximation is discussed in detail.
 \end{abstract}
 
 \section{Introduction}
 
-In computational biology a fundamental problem is to determine the evolutionary similarity between genome sequences. By far the most common mutation on genomes is the inversion. A genome can be represented by a permutation. An inversion then simply is the reversal of a substring of a permutation \cite{Kececioglu1995}.
+In computational biology a fundamental problem is to determine the evolutionary similarity between genome sequences. By far the most common mutation on genomes is the inversion. A genome can be represented by a permutation. An inversion then simply is the reversal of a substring of a permutation representing a genome \cite{Kececioglu1995}.
 
 We refer by $\langle S_n, \circ \rangle$ to the symmetric group with $S_n = \{(\pi_1\ \dots\ \pi_n) \mid \{\pi_1, \dots, \pi_n\} = [1,n]\}$. Let $\pi \in S_n$ be a permutation and $\pi_i$ denote $\pi(i)$. The identity permutation $id = (1\ \dots\ n)$ is the permutation mapping every input to itself. A \textit{reversal} $\rho(i,j) \in S_n$ inverses the substring from $\pi_i$ to $\pi_j$ of a permutation. It is represented by the permutation
 \begin{align*}
@@ -80,7 +80,7 @@ We now observe that the very same shortest sequence of reversals transforming $\
 \textit{Sorting by reversals (MIN-SBR)} then is the problem of determining the reversal distance between some permutation $\pi \in S_n$ and $id$. The reversal distance is denoted by $d(\pi)$. We say that a sequence of reversals transforming $\pi$ into $id$, \textit{sorts} $\pi$.
 \end{definition}
 
-Perhaps the most natural algorithm for sorting by reversals is the \textit{ratchet algorithm} proposed by \citeauthor*{Watterson19821} \cite{Watterson19821}. The algorithm sequentially brings all elements from $1$ to $n$ into the correct position. More formally, in every step $i$, if $\pi_i \neq i$, we apply the reversal $\rho(i, \pi_i^{-1})$ ($\pi_i^{-1}$ refers to the position of element $i$ in the permutation $\pi$). Once step $n-1$ is completed, element $n$ must be in position $n$. Therefore, this algorithm sorts any permutation in at most $n-1$ steps. The approximation of this algorithm, however, can be arbitrarily poor. Consider the permutation $(1\ n\ n-1\ \dots\ 2)$. The ratchet algorithm sorts this permutation in $n-1$ reversals. But the permutation can also be sorted by the single reversal $\rho(2, n)$ \cite{Kececioglu1995}.
+Perhaps the most intuitive algorithm for sorting by reversals is the \textit{ratchet algorithm} proposed by \citeauthor*{Watterson19821} \cite{Watterson19821}. The algorithm sequentially brings all elements from $1$ to $n$ into the correct position. More formally, in every step $i$, if $\pi_i \neq i$, we apply the reversal $\rho(i, \pi_i^{-1})$ ($\pi_i^{-1}$ refers to the position of element $i$ in the permutation $\pi$). Once step $n-1$ is completed, element $n$ must be in position $n$. Therefore, this algorithm sorts any permutation in at most $n-1$ steps. The approximation of this algorithm, however, can be arbitrarily poor. Consider the permutation $(1\ n\ n-1\ \dots\ 2)$. The ratchet algorithm sorts this permutation in $n-1$ reversals. But the permutation can also be sorted by the single reversal $\rho(2, n)$ \cite{Kececioglu1995}.
 
 MIN-SBR has been proven NP-hard by \citeauthor*{Caprara1997} \cite{Caprara1997} and MAX-SNP hard by \citeauthor*{Berman1999} excluding the existance of a polynomial time approximation scheme for this problem \cite{Berman1999}. The problem of sorting signed permutations by reversals, that is permutations where each element may be either positive or negative, was shown to be solvable in polynomial time by \citeauthor*{Hannenhalli1995} \cite{Hannenhalli1995}.
 
@@ -121,10 +121,10 @@ Based on this first lower bound, \citeauthor*{Kececioglu1995} proposed a simple 
 \section{Breakpoint graph}
 \label{sec:breakpoint_graph}
 
-We now try to find a tighter lower bound by introducing the breakpoint graph of a permutation first defined by \citeauthor*{Bafna1996}.
+We now try to find a tighter lower bound by introducing the breakpoint graph of a permutation that was first defined by \citeauthor*{Bafna1996}.
 
 \begin{definition}
-The \textit{breakpoint graph} $G(\pi)$ has as vertices the elements of the permutation $\pi$, $[0, n+1]$. We connect two vertices $\pi_i$ and $\pi_j$ with a \textit{red} edge if they form a breakpoint in $\pi$. And we connect two vertices $\pi_i$ and $\pi_j$ representing non-consecutive elements in $\pi$ (that is $|\pi_i^{-1} - \pi_j^{-1}| \neq 1$) with a \textit{blue} edge if $\pi_i \sim \pi_j$.
+The \textit{breakpoint graph} $G(\pi)$ has as vertices the elements of the permutation $\pi$, $[0, n+1]$. We connect two vertices $\pi_i$ and $\pi_j$ with a \textit{red} edge if they form a breakpoint in $\pi$. We connect two vertices $\pi_i$ and $\pi_j$ representing non-consecutive elements in $\pi$ (that is $|\pi_i^{-1} - \pi_j^{-1}| \neq 1$) with a \textit{blue} edge if $\pi_i \sim \pi_j$.
 \end{definition}
 
 \begin{figure}
@@ -160,19 +160,19 @@ The \textit{breakpoint graph} $G(\pi)$ has as vertices the elements of the permu
     \label{fig:breakpoint_graph}
 \end{figure}
 
-The red edges in the breakpoint graph identify the elements of $\pi$ that have to be split apart and the blue edges identify the elements of $\pi$ that have to be brought together in the process of sorting the permutation $\pi$ (the missing adjacencies). Figure \ref{fig:breakpoint_graph} shows the breakpoint graph of the permutation $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$.
+The red edges in the breakpoint graph represent the elements of $\pi$ that have to be split apart and the blue edges represent the elements of $\pi$ that have to be brought together in the process of sorting the permutation $\pi$ (the missing adjacencies). Figure \ref{fig:breakpoint_graph} shows the breakpoint graph of the permutation $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$.
 
-An \textit{alternating cycle decomposition} of $G(\pi)$ is a set of edge-disjoint alternating cycles, such that every edge of $G(\pi)$ is contained in exactly one cycle of the set. We observe that for every breakpoint, a vertice in $G(\pi)$ must have a missing adjacency. And conversely, for every missing adjacency a vertex in $G(\pi)$ must form a breakpoint. Therefore, each vertex in our breakpoint graph has an equal number of incident red and blue edges.
+An \textit{alternating cycle decomposition} of $G(\pi)$ is a set of edge-disjoint alternating cycles, such that every edge of $G(\pi)$ is contained in exactly one cycle of the set. We observe that for every breakpoint, a vertex in $G(\pi)$ must have a missing adjacency. Conversely, for every missing adjacency a vertex in $G(\pi)$ must form a breakpoint. Therefore, each vertex in our breakpoint graph has an equal number of incident red and blue edges.
 
 \begin{corollary}
 Hence, $G(\pi)$ can be decomposed into edge-disjoint alternating cycles.
 \end{corollary}
 
-The main result we prove in this section, relates the maximum number of alternating cycles of any cycle decomposition of $G(\pi)$ to the reversal distance of $\pi$.\padding
+The main result we prove in this section relates the maximum number of alternating cycles of any cycle decomposition of $G(\pi)$ to the reversal distance of $\pi$.\padding
 
-First, we need to define some terminology. An alternating cycle in $G(\pi)$ is a \textit{$k$-cycle} if it has $k$ constituting red and $k$ constituting blue edges. We say, a reversal \textit{acts on} two red edges of $G(\pi)$ if those two red edges represent the breakpoints that are split apart by the reversal. Now, an alternating cycle in $G(\pi)$ is \textit{oriented} if there is a $1$- or a $2$-reversal acting on two constituting red edges. An alternating cycle of $G(\pi)$ is \textit{unoriented} if it is not oriented.
+First, we need to define some terminology. An alternating cycle in $G(\pi)$ is a \textit{$k$-cycle} if it has $k$ constituting red and $k$ constituting blue edges. We say a reversal \textit{acts on} two red edges of $G(\pi)$ if those two red edges represent the breakpoints that are split apart by the reversal. Now, an alternating cycle in $G(\pi)$ is \textit{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges. An alternating cycle of $G(\pi)$ is \textit{unoriented} if it is not oriented.
 
-To give a more visual means of deducing whether an alternating cycle of $G(\pi)$ is oriented, we assign to each red edge $(\pi_i, \pi_{i+1})$ an orientation from $\pi_i$ to $\pi_{i+1}$, orienting red edges of $G(\pi)$ from the endpoint which appears first in $\pi$ to the endpoint which appears second. Then, we call an alternating cycle of $G(\pi)$ \textit{directed} with respect to $\pi$ if it is possible to walk along the whole cycle traversing each red edge in the direction of its orientation. An alternating cycle of $G(\pi)$ is called \textit{undirected} if it is not directed. For example, in figure \ref{fig:breakpoint_graph} the alternating cycle $(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\})$ is directed with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$, whereas the alternating cycle $(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})$ is undirected with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. \citeauthor*{Caprara1997} argues that an alternating cycle of $G(\pi)$ is oriented if and only if it is undirected \cite{Caprara1997}.
+To give a more visual means of deducing whether an alternating cycle of $G(\pi)$ is oriented, we assign to each red edge $(\pi_i, \pi_{i+1})$ an orientation from $\pi_i$ to $\pi_{i+1}$, orienting red edges of $G(\pi)$ from the endpoint which appears first in $\pi$ to the endpoint which appears second. Then, we call an alternating cycle of $G(\pi)$ \textit{directed} with respect to $\pi$ if it is possible to walk along the whole cycle traversing each red edge in the direction of its orientation. An alternating cycle of $G(\pi)$ is called \textit{undirected} if it is not directed. For example, in Figure \ref{fig:breakpoint_graph} the alternating cycle $(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\})$ is directed with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$, whereas the alternating cycle $(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})$ is undirected with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. \citeauthor*{Caprara1997} argues that an alternating cycle of $G(\pi)$ is oriented if and only if it is undirected \cite{Caprara1997}.
 
 \begin{lemma}
 \label{lem:1}
@@ -180,7 +180,7 @@ An oriented alternating cycle is a $2$-cycle if and only if the corresponding re
 \end{lemma}
 
 \begin{proof}
-Let $i \sim i'$ and $j \sim j'$. We observe that the $2$-cycles shown in figure \ref{fig:2cycles} are in fact the only types of $2$-cycles (with the exception of the symmetric case of an oriented $2$-cycle). Given an oriented $2$-cycle, we know that the corresponding reversal acting on its two constituting red edges brings $j'$ next to $j$ and $i$ next to $i'$, removing two breakpoints.
+Let $i \sim i'$ and $j \sim j'$. We observe that the $2$-cycles shown in Figure \ref{fig:2cycles} are in fact the only types of $2$-cycles (with the exception of the symmetric case of an oriented $2$-cycle). Given an oriented $2$-cycle, we know that the corresponding reversal acting on its two constituting red edges brings $j'$ next to $j$ and $i$ next to $i'$, removing two breakpoints.
 
 On the other hand, given a $2$-reversal $\rho$, we know that $\rho$ has to act on two red edges of $G(\pi)$. Identify with $k$ and $l$ the vertices incident to the first red edge and with $m$ and $n$ the vertices incident to the second red edge. Now, because $\rho$ removes both red edges from the breakpoint graph, we know that either $k \sim m$ and $l \sim n$ or $k \sim n$ and $l \sim m$. Thus, forming a $2$-cycle in $G(\pi)$.
 \end{proof}
@@ -341,8 +341,8 @@ We consider each case $b(\pi) - b(\pi \circ \rho) \in [-2,2]$ separately.
     \item Let $b(\pi) - b(\pi \circ \rho) = 2$. Lemma \ref{lem:1} implies that a $2$-reversal $\rho$ removes a $2$-cycle from every alternating cycle decomposition of $G(\pi)$. Therefore, $c(\pi \circ \rho) - c(\pi) \leq -1$.
     \item Let $b(\pi) - b(\pi \circ \rho) = 1$. A $1$-reversal either creates one new adjacency (i) or creates two new adjacencies and simultaneously destroys one adjacency (ii).
         \begin{enumerate}[(i)]
-            \item Let $j \sim j'$. Then figure \ref{fig:case_i} illustrates that every alternating cycle in $G(\pi \circ \rho)$ containing the edge $\{i,k\}$ induces an alternating cycle in $G(\pi)$ containing the edges $\{j,i\}$, $\{j,j'\}$, and $\{j',k\}$. Therefore, every alternating cycle decomposition of $G(\pi \circ \rho)$ into $c$ cycles induces an alternating cycle decomposition of $G(\pi)$ into $c$ cycles.
-            \item Let $i \sim j$, $i \sim k$ and $j \sim l$. Then figure \ref{fig:case_ii} illustrates that every alternating cycle in $G(\pi \circ \rho)$ containing the edge $\{i,j\}$ induces an alternating cycle in $G(\pi)$ containing the edges $\{i,k\}$, $\{k,l\}$, and $\{j,l\}$. Therefore, every alternating cycle decomposition of $G(\pi \circ \rho)$ into $c$ cycles induces an alternating cycle decomposition of $G(\pi)$ into $c$ cycles.
+            \item Let $j \sim j'$. Then Figure \ref{fig:case_i} illustrates that every alternating cycle in $G(\pi \circ \rho)$ containing the edge $\{i,k\}$ induces an alternating cycle in $G(\pi)$ containing the edges $\{j,i\}$, $\{j,j'\}$, and $\{j',k\}$. Therefore, every alternating cycle decomposition of $G(\pi \circ \rho)$ into $c$ cycles induces an alternating cycle decomposition of $G(\pi)$ into $c$ cycles.
+            \item Let $i \sim j$, $i \sim k$ and $j \sim l$. Then Figure \ref{fig:case_ii} illustrates that every alternating cycle in $G(\pi \circ \rho)$ containing the edge $\{i,j\}$ induces an alternating cycle in $G(\pi)$ containing the edges $\{i,k\}$, $\{k,l\}$, and $\{j,l\}$. Therefore, every alternating cycle decomposition of $G(\pi \circ \rho)$ into $c$ cycles induces an alternating cycle decomposition of $G(\pi)$ into $c$ cycles.
         \end{enumerate}
     Therefore, for both subcases, $c(\pi \circ \rho) - c(\pi) \leq 0$ holds.
 \end{enumerate}
@@ -372,7 +372,7 @@ Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of
 Setting $i=t$, proves the theorem.
 \end{proof}
 
-Using this lower bound, \citeauthor*{Bafna1996} already describe a $7/4$-approximation that is not considered in more detail here. \citeauthor*{Christie1998} formulated a lower bound in terms of the number of $2$-cycles in a maximum alternating cycle decomposition \cite{Christie1998}.
+Using this lower bound, \citeauthor*{Bafna1996} already describe a $7/4$-approximation that is not considered here. \citeauthor*{Christie1998} formulated a lower bound in terms of the number of $2$-cycles in a maximum alternating cycle decomposition \cite{Christie1998}.
 
 \begin{lemma}
 \label{lem:2}
@@ -412,7 +412,7 @@ To obtain a sorting sequence of reversals for a permutation $\pi$ given an alter
 \begin{definition}
 Given an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$, the \textit{reversal graph} $R(\mathcal{C})$ is constructed as follows.
 
-For each adjacency in $\pi$ we introduce an isolated blue vertex. For each $m$-cycle in $\mathcal{C}$ we introduce $m$ vertices, each representing a constituting blue edge. Each vertex $u$ represents the reversal $\rho(u)$ that acts on the two red edges incident to the blue edge. In the case of a $2$-cycle, two vertices in the reversal graph represent the same reversal. A vertex is colored red if the represented reversal is a $1$- or a $2$-reversal. Otherwise a vertex is colored blue.
+For each adjacency in $\pi$ we introduce an isolated blue vertex. For each $m$-cycle in $\mathcal{C}$ we introduce $m$ vertices, each representing a constituting blue edge. Each vertex $u$ represents the reversal $\rho(u)$ that acts on the two red edges incident to the blue edge. In the case of a $2$-cycle, two vertices in the reversal graph represent the same reversal. A vertex is colored red if the represented reversal is a $1$- or $2$-reversal. Otherwise a vertex is colored blue.
 
 Let $u$ be a vertex in $R(\mathcal{C})$. Define $l_b(u)$ and $r_b(u)$ to be the positions in $\pi$ of the leftmost and rightmost elements, respectively, that are incident to the blue edge in $G(\pi)$ represented by $u$. Similarly, $l_r(u)$ and $r_r(u)$ are defined to be the positions in $\pi$ of the leftmost and rightmost red edges that are adjacent to the blue edge represented by $u$. The position of a red edge is the position of its leftmost incident vertex. Two vertices $u$ and $v$ are connected with an edge if $l_b(u) < l_b(v) < r_b(u) < r_b(v)$ or $l_b(v) < l_b(u) < r_b(v) < r_b(u)$ or $l_r(u) < l_r(v) < r_r(u) < r_r(v)$ or $l_r(v) < l_r(u) < r_r(v) < r_r(u)$.
 
@@ -451,9 +451,9 @@ Consider the alternating cycle decomposition
     \mathcal{C} = \{&(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\}), \\
                     &(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})\}
 \end{align*}
-of the breakpoint graph of $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. The corresponding reversal graph is given in figure \ref{fig:reversal_graph}.\padding
+of the breakpoint graph of $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. The corresponding reversal graph is given in Figure \ref{fig:reversal_graph}.\padding
 
-We observe that the only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$. And therefore, the only reversal graph of the identity permutation $R(\emptyset)$ consists of $n+1$ isolated blue vertices. In the remainder of this section, our goal is to describe a way of transforming the reversal graph of a given alternating cycle decomposition into the reversal graph only consisting of isolated blue vertices with as few reversals as possible. For that purpose, we first examine the effects of single reversals on the reversal graph.\padding
+We observe that the only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$. Therefore, the only reversal graph of the identity permutation $R(\emptyset)$ consists of $n+1$ isolated blue vertices. In the remainder of this section, our goal is to describe a way of transforming the reversal graph of a given alternating cycle decomposition into the reversal graph only consisting of isolated blue vertices with as few reversals as possible. For that purpose, we first examine the effects of single reversals on the reversal graph.\padding
 
 Let $u$ be a vertex of $R(\mathcal{C})$ representing reversal $\rho(u)$. Denote by $\mathcal{C}_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $\mathcal{C}$ by removing one 2-cycle or shortening one of its cycles by one red edge and one blue edge.
 
@@ -525,7 +525,7 @@ $R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following 
     \label{fig:reversal_graph_change}
 \end{figure}
 
-Applying the reversal represented by vertex $\{4,5\}$ in figure \ref{fig:reversal_graph} results in the breakpoint and reversal graphs shown in figures \ref{fig:breakpoint_graph_change} and \ref{fig:reversal_graph_change} respectively.
+Applying the reversal represented by vertex $\{4,5\}$ in Figure \ref{fig:reversal_graph} results in the breakpoint and reversal graphs shown in Figures \ref{fig:breakpoint_graph_change} and \ref{fig:reversal_graph_change} respectively.
 
 \begin{corollary}
 A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
@@ -619,7 +619,7 @@ To find a large number of $2$-cycles in $G(\pi)$, \citeauthor*{Christie1998} con
 Given the permutation $\pi$, we construct the \textit{matching graph} $F(\pi)$ with vertices representing red edges in $G(\pi)$ and vertices $u, v$ being adjacent if they form a $2$-cycle in $G(\pi)$.
 \end{definition}
 
-We now observe that $2$-cycles of $G(\pi)$ are represented by edges in $F(\pi)$. We then find a maximum cardinality matching $M$ of $F(\pi)$. We call a $2$-cycle of $G(\pi)$ \textit{selected} if its corresponding edge of $F(\pi)$ is part of the matching $M$. Note, that we haven't yet found the set of edge-disjoint $2$-cycles that we need to construct an alternating cycle decomposition. This is because the matching ensures that all selected $2$-cycles are edge-disjoint on their red edges, but does not ensure that they are also edge-disjoint on their blue edges. To find a large set of edge-disjoint $2$-cycles, \citeauthor*{Christie1998} introduces another graph.
+We now observe that $2$-cycles of $G(\pi)$ are represented by edges in $F(\pi)$. We then find a maximum cardinality matching $M$ of $F(\pi)$. We call a $2$-cycle of $G(\pi)$ \textit{selected} if its corresponding edge of $F(\pi)$ is part of the matching $M$. Note, that we have not yet found the set of edge-disjoint $2$-cycles that we need to construct an alternating cycle decomposition. This is because the matching ensures that all selected $2$-cycles are edge-disjoint on their red edges, but does not ensure that they are also edge-disjoint on their blue edges. To find a large set of edge-disjoint $2$-cycles, \citeauthor*{Christie1998} introduces another graph.
 
 \begin{figure}
     \centering
@@ -672,7 +672,7 @@ Another lemma, \citeauthor*{Christie1998} shows, is given without proof.
 
 \begin{lemma}
 \label{lem:10}
-Let $C$ be an unoriented ladder $2$-cycle in $\mathcal{C}$. Then the vertices of $R(\mathcal{C})$ that represent $C$ are part of a component that contains vertices representing an alternating cycle that is not a selected $2$-cycle.
+Let $C$ be an unoriented ladder $2$-cycle in $\mathcal{C}$. Then the vertices of $R(\mathcal{C})$ that represent $C$ are part of a connected component that contains vertices representing an alternating cycle that is not a selected $2$-cycle.
 \end{lemma}
 
 \subsection{Approximation bound}
@@ -715,7 +715,7 @@ And therefore
 \subsection{Algorithm}
 \label{sec:algorithm}
 
-The approximation algorithm with a performance ratio of $\frac{3}{2}$, is outlined in figure \ref{alg:approximation}.
+The approximation algorithm with a performance ratio of $\frac{3}{2}$, is outlined in Figure \ref{alg:approximation}.
 
 \begin{figure}[htb]
     \begin{algorithm}[H]
@@ -732,7 +732,7 @@ The approximation algorithm with a performance ratio of $\frac{3}{2}$, is outlin
     \label{alg:approximation}
 \end{figure}
 
-The matching graph can be constructed in $O(n)$ time. The maximum cardinality matching can be obtained from $F(\pi)$ using the algorithm of Micali and Vazirani in $O(|V||E|^{\frac{1}{2}})$ time \cite{Micali1980} where $|V|$ and $|E|$ are the number of vertices and edges respectively. Therefore, it is possible to find such a matching in $O(n^{\frac{3}{2}})$ time. The alternating cycle decomposition can be obtained from the matching in $O(n)$ time. The reversal graph can be constructed in $O(n^2)$ time. The algorithm to find an elimination sequence of $R(\mathcal{C})$ is outlined in figure \ref{alg:elimination_sequence} and runs in $O(n^4)$ time. So the overall time-complexity of the algorithm is $O(n^4)$ \cite{Christie1998}.
+The matching graph can be constructed in $O(n)$ time. The maximum cardinality matching can be obtained from $F(\pi)$ using the algorithm of Micali and Vazirani in $O(|V||E|^{\frac{1}{2}})$ time \cite{Micali1980} where $|V|$ and $|E|$ are the number of vertices and edges respectively. Therefore, it is possible to find such a matching in $O(n^{\frac{3}{2}})$ time. The alternating cycle decomposition can be obtained from the matching in $O(n)$ time. The reversal graph can be constructed in $O(n^2)$ time. The algorithm to find an elimination sequence of $R(\mathcal{C})$ is outlined in Figure \ref{alg:elimination_sequence} and runs in $O(n^4)$ time. So the overall time-complexity of the algorithm is $O(n^4)$ \cite{Christie1998}.
 
 Using results from \citeauthor*{Kaplan1997}, the time-complexity of finding an elimination sequence and therefore the time-complexity of the entire algorithm can be improved to $O(n^2)$ \cite{Kaplan1997}.
 
