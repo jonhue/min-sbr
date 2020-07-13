@@ -50,7 +50,7 @@
 \maketitle
 
 \begin{abstract}
-    A reversal is a transformation, reversing the order of elements of a permutation. Sorting by reversals is the problem of finding the shortest sequence of reversals transforming a permutation to the identity. The length of such a sequence is said to be the reversal distance of that permutation. In this paper we introduce important concepts used in the literature on this topic. In particular, we introduce the fundamental relationship between the reversal distance and the number of alternating cycles in a cycle decomposition of a suitably-defined bi-colored graph. Then, a $3/2$-approximation is discussed in detail.
+    A reversal is a transformation that inverses the order of elements of a permutation. Sorting by reversals is the problem of finding the shortest sequence of reversals transforming a permutation to the identity. The length of such a sequence is said to be the reversal distance of that permutation. In this paper we introduce important concepts used in the literature on this topic. In particular, we introduce the fundamental relationship between the reversal distance and the number of alternating cycles in a cycle decomposition of a suitably-defined bi-colored graph. Then, a $3/2$-approximation is discussed in detail.
 \end{abstract}
 
 \section{Introduction}
@@ -59,7 +59,7 @@ In computational biology a fundamental problem is to determine the evolutionary 
 
 We refer by $\langle S_n, \circ \rangle$ to the symmetric group with $S_n = \{(\pi_1\ \dots\ \pi_n) \mid \{\pi_1, \dots, \pi_n\} = [1,n]\}$. Let $\pi \in S_n$ be a permutation and $\pi_i$ denote $\pi(i)$. The identity permutation $id = (1\ \dots\ n)$ is the permutation mapping every input to itself. A \textit{reversal} $\rho(i,j) \in S_n$ inverses the substring from $\pi_i$ to $\pi_j$ of a permutation. It is represented by the permutation
 \begin{align*}
-    (1\ \cdots\ i-1\ j\ j-1\ \cdots\ i+1\ i\ j+1\ \cdots\ n).
+    (1\ \cdots\ i-1\ \ j\ \ j-1\ \cdots\ i+1\ \ i\ \ j+1\ \cdots\ n).
 \end{align*}
 Composing $\pi$ with $\rho(i,j)$ yields $(\pi_1\ \cdots\ \pi_{i-1}\ \pi_j\ \pi_{j-1}\ \dots\ \pi_{i+1}\ \pi_i\ \pi_{j+1}\ \cdots\ \pi_n)$ where the elements $\pi_i, \dots, \pi_j$ have been reversed.
 
@@ -531,7 +531,7 @@ Applying the reversal represented by vertex $\{4,5\}$ in Figure \ref{fig:reversa
 A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
 \end{corollary}\padding
 
-We now consider a couple of lemmas that will help use prove the approximation bound later.
+We now consider a couple of lemmas that will later help us in proving the approximation bound.
 
 \begin{lemma}
 \label{lem:4}
