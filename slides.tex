@@ -459,7 +459,7 @@ Setting $i=t$, proves the theorem.
 
 \begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
 \label{thm:3}
-Let $\pi \in S_n$ and $C$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $\g{c_2(\pi)}$ be the minimum number of alternating $2$-cycles in any such $C$. Then
+Let $\pi \in S_n$ and $\mathcal{C}$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $\g{c_2(\pi)}$ be the minimum number of alternating $2$-cycles in any such $\mathcal{C}$. Then
 \begin{align*}
     d(\pi) \geq \frac{2}{3} \r{b(\pi)} - \frac{1}{3} \g{c_2(\pi)}.
 \end{align*}
@@ -476,7 +476,7 @@ By theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals 
 
 We find such an algorithm in two steps:
 \begin{enumerate}
-    \item given an alternating cycle decomposition $C$ of $G(\pi)$ we find a sorting sequence of reversals for $\pi$\pause; and
+    \item given an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ we find a sorting sequence of reversals for $\pi$\pause; and
     \item we find an alternating cycle decomposition of $G(\pi)$ maximizing the number of $2$-cycles.
 \end{enumerate}
 \end{block}\pause
@@ -490,11 +490,11 @@ Lastly, we prove the approximation bound.
 \begin{frame}
 
 \begin{definition}[reversal graph, \citeauthor*{Christie1998}]
-Given an alternating cycle decomposition $C$ of $G(\pi)$, \par\pause
-define $R(C)$ with
+Given an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$, \par\pause
+define $R(\mathcal{C})$ with
 \begin{itemize}
     \item an isolated \b{blue} vertex for each adjacency in $\pi$\pause;
-    \item $m$ vertices for each $m$-cycle in $C$ each representing the reversal $\rho(u)$ acting on the two red edges connected by a blue edge\pause;
+    \item $m$ vertices for each $m$-cycle in $\mathcal{C}$ each representing the reversal $\rho(u)$ acting on the two red edges connected by a blue edge\pause;
     \begin{itemize}
         \item a vertex is \r{red} if the represented reversal is a $1$- or $2$-reversal
         \item a vertex is \b{blue} otherwise
@@ -503,7 +503,7 @@ define $R(C)$ with
 \end{itemize}
 \end{definition}\pause
 
-Observation: The only alternating cycle decomposition of $G(id)$ is $C = \emptyset$.\pause
+Observation: The only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$.\pause
 
 \begin{corollary}[\citeauthor*{Christie1998}]
 $R(\emptyset)$ consists of $n+1$ isolated blue vertices.
@@ -515,12 +515,12 @@ $R(\emptyset)$ consists of $n+1$ isolated blue vertices.
 
 \begin{exampleblock}{Example}
 Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$. \par
-Given the alternating cycle decomposition $C$ of $G(\pi)$
+Given the alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$
 
 \begin{tabularx}{\textwidth}{XR}
 {\footnotesize\begin{align*}
-    C = \{(&\{1,3\},\{2,3\},\{2,4\}, \\
-           &\{4,5\},\{2,5\},\{1,2\})\}
+    \mathcal{C} = \{(&\{1,3\},\{2,3\},\{2,4\}, \\
+                     &\{4,5\},\{2,5\},\{1,2\})\}
 \end{align*}} &
 \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
@@ -542,7 +542,7 @@ Given the alternating cycle decomposition $C$ of $G(\pi)$
 \end{tikzpicture}
 \end{tabularx}\pause
 
-construct $R(C)$.
+construct $R(\mathcal{C})$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
@@ -561,21 +561,21 @@ construct $R(C)$.
 \end{center}
 \end{exampleblock}\pause
 
-Idea: Each connected component of $R(C)$ can be sorted separately.
+Idea: Each connected component of $R(\mathcal{C})$ can be sorted separately.
 
 \end{frame}
 
 \begin{frame}
 
-Let $u$ be a vertex of $R(C)$ representing reversal $\rho(u)$.\pause
+Let $u$ be a vertex of $R(\mathcal{C})$ representing reversal $\rho(u)$.\pause
 
 \begin{definition}
-Denote by $C_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $C$.% by removing one 2-cycle or shortening one of its cycles by one red edge.
+Denote by $\mathcal{C}_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $\mathcal{C}$.% by removing one 2-cycle or shortening one of its cycles by one red edge.
 \end{definition}\pause
 
 \begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:5}
-$R(C_u)$ can be derived from $R(C)$ by making the following changes to $R(C)$:\pause
+$R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following changes to $R(\mathcal{C})$:\pause
 \begin{enumerate}
     \item flip the color of every vertex adjacent to $u$\pause;
     \item flip the adjacency of every pair of vertices adjacent to $u$\pause; and
@@ -591,7 +591,7 @@ $R(C_u)$ can be derived from $R(C)$ by making the following changes to $R(C)$:\p
 Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u = \{1,2\}$.\padding
 
 \begin{tabularx}{\textwidth}{X|R}
-$G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
+$G(\pi)$ and $R(\mathcal{C})$ & $G(\pi \circ \rho(u))$ and $R(\mathcal{C}_u)$ \\ \hline
 \spadding\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=node] (0) at (-3, 0) {0};
@@ -663,7 +663,7 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 % \end{corollary}\pause
 
 % \begin{corollary}[\citeauthor*{Christie1998}]
-% $R(C)$ contains no isolated blue vertices arising from cycles in $C$.
+% $R(\mathcal{C})$ contains no isolated blue vertices arising from cycles in $\mathcal{C}$.
 % \end{corollary}
 
 % \end{frame}
@@ -672,12 +672,12 @@ $G(\pi)$ and $R(C)$ & $G(\pi \circ \rho(u))$ and $R(C_u)$ \\ \hline
 
 \begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:3}
-All vertices arising from the same alternating cycle in $C$ are in the same connected component of $R(C)$.
+All vertices arising from the same alternating cycle in $\mathcal{C}$ are in the same connected component of $R(\mathcal{C})$.
 \end{lemma}\pause
 
 \begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:7}
-Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected component of $R(C)$ with vertices arising from at least one more alternating cycle of $C$.
+Vertices arising from an unoriented $2$-cycle of $\mathcal{C}$ must be in a connected component of $R(\mathcal{C})$ with vertices arising from at least one more alternating cycle of $\mathcal{C}$.
 \end{lemma}
 
 \begin{figure}
@@ -704,9 +704,9 @@ Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected comp
 \end{figure}
 
 % \begin{proof}
-% Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $C$. \par\pause
-% Then its two constituting blue edges do not interleave. Hence, $R(C)$ does not connect $u$ and $v$ with an edge. \par\pause
-% If its constituting blue edges do not interleave with blue edges of any other alternating cycle of $C$, then $u$ and $v$ would be isolated blue vertices. \b{$\lightning$}
+% Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $\mathcal{C}$. \par\pause
+% Then its two constituting blue edges do not interleave. Hence, $R(\mathcal{C})$ does not connect $u$ and $v$ with an edge. \par\pause
+% If its constituting blue edges do not interleave with blue edges of any other alternating cycle of $\mathcal{C}$, then $u$ and $v$ would be isolated blue vertices. \b{$\lightning$}
 % \end{proof}
 
 \end{frame}
@@ -714,18 +714,18 @@ Vertices arising from an unoriented $2$-cycle of $C$ must be in a connected comp
 \begin{frame}
 
 \begin{definition}
-We call a connected component of $R(C)$ \b{oriented} if it contains a red vertex or if it consists solely of an isolated blue vertex. \pause\spadding
+We call a connected component of $R(\mathcal{C})$ \b{oriented} if it contains a red vertex or if it consists solely of an isolated blue vertex. \pause\spadding
 
-Let $A$ be a connected component of $R(C)$. We denote by $A_u$ the subgraph of $R(C_u)$ that contains all the vertices of $A$.
+Let $A$ be a connected component of $R(\mathcal{C})$. We denote by $A_u$ the subgraph of $R(\mathcal{C}_u)$ that contains all the vertices of $A$.
 \end{definition}\pause
 
 \begin{lemma}[\citeauthor*{Christie1998}]
 \label{lem:4}
-If a connected component $A$ of $R(C)$ is oriented and not an isolated blue vertex, it contains a red vertex $u$ such that $A_u$ is still oriented.
+If a connected component $A$ of $R(\mathcal{C})$ is oriented and not an isolated blue vertex, it contains a red vertex $u$ such that $A_u$ is still oriented.
 \end{lemma}
 
 % \begin{definition}
-% A sequence of reversals that turns the connected component $A$ of $R(C)$ into an isolated blue vertex, is called an \b{elemination sequence} for $A$.
+% A sequence of reversals that turns the connected component $A$ of $R(\mathcal{C})$ into an isolated blue vertex, is called an \b{elemination sequence} for $A$.
 % \end{definition}\pause
 
 \end{frame}
@@ -839,13 +839,13 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$, $u_2 = \{2,3\}$.\spa
 
 % \begin{lemma}[\citeauthor*{Christie1998}]
 % \label{lem:6}
-% Let $A$ be an oriented connected component of $R(C)$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains $k$ $2$-reversals with all the other reversals being $1$-reversals.
+% Let $A$ be an oriented connected component of $R(\mathcal{C})$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains $k$ $2$-reversals with all the other reversals being $1$-reversals.
 % \end{lemma}\pause
 
 % \begin{proof}
 % We know that
 % \begin{itemize}
-%     \item every vertex in $R(C)$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component (lemma \ref{lem:3})\pause;
+%     \item every vertex in $R(\mathcal{C})$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component (lemma \ref{lem:3})\pause;
 %     \item  as $A$ is oriented, we can use lemma \ref{lem:4} to repeatedly find a red vertex $u$ in $A$ and apply $\rho(u)$\pause; and
 %     \item $\rho(u)$ is a $2$-reversal iff $u$ arises from a $2$-cycle (lemma \ref{lem:2}).
 % \end{itemize}\pause
@@ -857,7 +857,7 @@ Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$, $u_2 = \{2,3\}$.\spa
 \begin{frame}
 
 % \begin{lemma}[\citeauthor*{Christie1998}]
-% Let $A$ be an unoriented connected component of $R(C)$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains one $0$-reversal, $k$ $2$-reversals, with all the other reversals being $1$-reversals.
+% Let $A$ be an unoriented connected component of $R(\mathcal{C})$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains one $0$-reversal, $k$ $2$-reversals, with all the other reversals being $1$-reversals.
 % \end{lemma}\pause
 
 % \begin{proof}
@@ -874,11 +874,11 @@ Observations:
 
 \begin{theorem}[\citeauthor*{Christie1998}]
 \label{thm:4}
-Let $\pi \in S_n$ and $C$ be a cycle decomposition of $G(\pi)$. Then
+Let $\pi \in S_n$ and $\mathcal{C}$ be an alternating cycle decomposition of $G(\pi)$. Then
 \begin{align*}
-    d(\pi) \leq \r{b(\pi)} - |C| + u(C)
+    d(\pi) \leq \r{b(\pi)} - |\mathcal{C}| + u(\mathcal{C})
 \end{align*}
-where $u(C)$ is the number of unoriented components in $R(C)$.
+where $u(\mathcal{C})$ is the number of unoriented components in $R(\mathcal{C})$.
 \end{theorem}
 
 \end{frame}
@@ -911,12 +911,12 @@ Let $z$ be the number of independent $2$-cycles, and $y$ the number of ladder $2
 
 \begin{theorem}[\citeauthor*{Christie1998}]
 \label{thm:5}
-Given a maximum cardinality matching $M$ of $F(\pi)$ it is possible to find a cycle decomposition $C$ of $G(\pi)$ that contains at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
+Given a maximum cardinality matching $M$ of $F(\pi)$ it is possible to find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ that contains at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
 \end{theorem}
 
 % \begin{proof}
-% Let $C$ contain all independent $2$-cycles from $L(M)$ and every alternate cycle of each ladder. \par\pause
-% Obtain the rest of $C$ by adding any alternating cycle decomposition of the remaining unused edges of $G(\pi)$.
+% Let $\mathcal{C}$ contain all independent $2$-cycles from $L(M)$ and every alternate cycle of each ladder. \par\pause
+% Obtain the rest of $\mathcal{C}$ by adding any alternating cycle decomposition of the remaining unused edges of $G(\pi)$.
 % \end{proof}
 
 \end{frame}
@@ -934,7 +934,7 @@ Let $\pi \in S_n$. Then
 \end{theorem}\pause
 
 \begin{proof}\renewcommand{\qedsymbol}{}
-Using theorem \ref{thm:5}, first find an alternating cycle decomposition $C$ of $G(\pi)$ with at least $\left\lceil \frac{y}{2} \right\rceil$ $2$-cycles as part of ladders and $z$ independent $2$-cycles.
+Using theorem \ref{thm:5}, first find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ with at least $\left\lceil \frac{y}{2} \right\rceil$ $2$-cycles as part of ladders and $z$ independent $2$-cycles.
 \end{proof}
 
 \end{frame}
@@ -943,8 +943,8 @@ Using theorem \ref{thm:5}, first find an alternating cycle decomposition $C$ of 
 
 \begin{proof}[Proof (cont.)]\renewcommand{\qedsymbol}{}
 \begin{itemize}
-    \item Let $k$ be the number of $2$-cycles in oriented connected components of $R(C)$.\pause
-    \item Let $u$ be the number of unoriented connected components in $R(C)$ that include $l$ selected $2$-cycles and that contain vertices representing remaining unselected $2$-cycles.\pause
+    \item Let $k$ be the number of $2$-cycles in oriented connected components of $R(\mathcal{C})$.\pause
+    \item Let $u$ be the number of unoriented connected components in $R(\mathcal{C})$ that include $l$ selected $2$-cycles and that contain vertices representing remaining unselected $2$-cycles.\pause
     \item Let $v$ be the number of remaining unoriented connected components consisting only of vertices representing $m$ independent selected $2$-cycles.
 \end{itemize}\pause
 By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals and only $u+v$ $0$-reversals. \pause Therefore
@@ -962,7 +962,7 @@ Left to show: $-k-l-m+v \leq - \frac{1}{2} \g{c_2(\pi)}$.
 \begin{proof}[Proof (cont.)]
 Left to show: $k+l+m-v \geq \frac{1}{2} \g{c_2(\pi)}$. \pause We know that
 \begin{enumerate}
-    \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $C$\pause;
+    \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $\mathcal{C}$\pause;
     \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
     \item $|M| = y+z \geq \g{c_2(\pi)}$.
 \end{enumerate}\pause

@@ -84,7 +84,7 @@ Perhaps the most intuitive algorithm for sorting by reversals is the \textit{rat
 
 MIN-SBR has been proven NP-hard by \citeauthor*{Caprara1997} \cite{Caprara1997} and MAX-SNP hard by \citeauthor*{Berman1999} excluding the existance of a polynomial time approximation scheme for this problem \cite{Berman1999}. The problem of sorting signed permutations by reversals, that is permutations where each element may be either positive or negative, was shown to be solvable in polynomial time by \citeauthor*{Hannenhalli1995} \cite{Hannenhalli1995}.
 
-In this paper we give an overview of approximation algorithms for MIN-SBR. We first introduce the notion of breakpoints given by \citeauthor*{Kececioglu1995} allowing us to formulate a first lower bound for the reversal distance of $\pi$ and leading to a $2$-approximation \cite{Kececioglu1995} (section \ref{sec:breakpoints}). In section \ref{sec:breakpoint_graph} we define a suitable bi-colored graph first introduced by \citeauthor*{Bafna1996} to find a tighter lower bound \cite{Bafna1996}. In doing so, we make a fundamental observation relating the reversal distance to the number of alternating cycles in a cycle decomposition of such a graph. Lastly, we consider a $3/2$-approximation described by \citeauthor{Christie1998} \cite{Christie1998} (Section \ref{sec:32_approximation}). A $1.375$-approximation was later obtained by \citeauthor*{Berman2001}, but is not considered here \cite{Berman2001}.
+In this paper we give an overview of approximation algorithms for MIN-SBR. We first introduce the notion of breakpoints given by \citeauthor*{Kececioglu1995} allowing us to formulate a first lower bound for the reversal distance of $\pi$ and leading to a $2$-approximation \cite{Kececioglu1995} (Section \ref{sec:breakpoints}). In Section \ref{sec:breakpoint_graph} we define a suitable bi-colored graph first introduced by \citeauthor*{Bafna1996} to find a tighter lower bound \cite{Bafna1996}. In doing so, we make a fundamental observation relating the reversal distance to the number of alternating cycles in a cycle decomposition of such a graph. Lastly, we consider a $3/2$-approximation described by \citeauthor{Christie1998} \cite{Christie1998} (Section \ref{sec:32_approximation}). A $1.375$-approximation was later obtained by \citeauthor*{Berman2001}, but is not considered here \cite{Berman2001}.
 
 \section{Breakpoints}
 \label{sec:breakpoints}
@@ -170,7 +170,7 @@ Hence, $G(\pi)$ can be decomposed into edge-disjoint alternating cycles.
 
 The main result we prove in this section relates the maximum number of alternating cycles of any cycle decomposition of $G(\pi)$ to the reversal distance of $\pi$.\padding
 
-First, we need to define some terminology. An alternating cycle in $G(\pi)$ is a \textit{$k$-cycle} if it has $k$ constituting red and $k$ constituting blue edges. We say a reversal \textit{acts on} two red edges of $G(\pi)$ if those two red edges represent the breakpoints that are split apart by the reversal. Now, an alternating cycle in $G(\pi)$ is \textit{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges. An alternating cycle of $G(\pi)$ is \textit{unoriented} if it is not oriented.
+First, we introduce some terminology. An alternating cycle in $G(\pi)$ is a \textit{$k$-cycle} if it has $k$ constituting red and $k$ constituting blue edges. We say a reversal \textit{acts on} two red edges of $G(\pi)$ if those two red edges represent the breakpoints that are split apart by the reversal. Now, an alternating cycle in $G(\pi)$ is \textit{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges. An alternating cycle of $G(\pi)$ is \textit{unoriented} if it is not oriented.
 
 To give a more visual means of deducing whether an alternating cycle of $G(\pi)$ is oriented, we assign to each red edge $(\pi_i, \pi_{i+1})$ an orientation from $\pi_i$ to $\pi_{i+1}$, orienting red edges of $G(\pi)$ from the endpoint which appears first in $\pi$ to the endpoint which appears second. Then, we call an alternating cycle of $G(\pi)$ \textit{directed} with respect to $\pi$ if it is possible to walk along the whole cycle traversing each red edge in the direction of its orientation. An alternating cycle of $G(\pi)$ is called \textit{undirected} if it is not directed. For example, in Figure \ref{fig:breakpoint_graph} the alternating cycle $(\{0,7\},\{6,7\},\{3,6\},\{3,4\},\{1,4\},\{0,1\})$ is directed with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$, whereas the alternating cycle $(\{5,7\},\{4,5\},\{2,4\},\{1,2\},\{1,8\},\{7,8\})$ is undirected with respect to $(0\ 7\ 5\ 6\ 3\ 2\ 4\ 1\ 8)$. \citeauthor*{Caprara1997} argues that an alternating cycle of $G(\pi)$ is oriented if and only if it is undirected \cite{Caprara1997}.
 
@@ -233,7 +233,7 @@ On the other hand, given a $2$-reversal $\rho$, we know that $\rho$ has to act o
     \label{fig:2cycles}
 \end{figure}
 
-A similar lemma is proven by \citeauthor*{Christie1998} which we use as a corollary of this lemma in section \ref{sec:reversal_graph} \cite{Christie1998}.\padding
+A similar lemma is proven by \citeauthor*{Christie1998} which we use as a corollary of this lemma in Section \ref{sec:reversal_graph} \cite{Christie1998}.\padding
 
 Let $c(\pi)$ denote the maximum number of alternating cycles in any alternating cycle decomposition of $G(\pi)$. \citeauthor*{Bafna1996} prove a fundamental theorem relating $b(\pi)$ with $c(\pi)$ \cite{Bafna1996}.
 
@@ -349,7 +349,7 @@ We consider each case $b(\pi) - b(\pi \circ \rho) \in [-2,2]$ separately.
 Proof for other cases similar.
 \end{proof}
 
-Using \ref{thm:1}, \citeauthor*{Bafna1996} give a lower bound of the reversal distance of a permutation $\pi$ in terms of $b(\pi)$ and $c(\pi)$ \cite{Bafna1996}.
+Using Theorem \ref{thm:1}, \citeauthor*{Bafna1996} give a lower bound of the reversal distance of a permutation $\pi$ in terms of $b(\pi)$ and $c(\pi)$ \cite{Bafna1996}.
 
 \begin{theorem}
 \label{thm:2}
@@ -396,13 +396,13 @@ Let $\pi \in S_n$. Then
 \end{theorem}
 
 \begin{proof}
-Follows immediately from theorem \ref{thm:2} and lemma \ref{lem:2}.
+Follows immediately from Theorem \ref{thm:2} and Lemma \ref{lem:2}.
 \end{proof}
 
 \section{3/2-approximation}
 \label{sec:32_approximation}
 
-In this section we discuss the $3/2$-approximation proposed by \citeauthor*{Christie1998} in detail \cite{Christie1998}. First, we describe how a sorting sequence of reversals can be obtained from an alternating cycle decomposition of $G(\pi)$ (section \ref{sec:reversal_graph}). In section \ref{sec:cycle_decomposition} we then describe how to find such a cycle decomposition. This then allows us to prove the approximation bound (section \ref{sec:approximation_bound}). Lastly, we describe the full algorithm and analyze its complexity (section \ref{sec:algorithm}).
+In this section we discuss the $3/2$-approximation proposed by \citeauthor*{Christie1998} in detail \cite{Christie1998}. First, we describe how a sorting sequence of reversals can be obtained from an alternating cycle decomposition of $G(\pi)$ (Section \ref{sec:reversal_graph}). In Section \ref{sec:cycle_decomposition} we then describe how to find such a cycle decomposition. This then allows us to prove the approximation bound (Section \ref{sec:approximation_bound}). Lastly, we describe the full algorithm and analyze its complexity (Section \ref{sec:algorithm}).
 
 \subsection{Reversal graph}
 \label{sec:reversal_graph}
@@ -583,8 +583,8 @@ Let $A$ be an oriented connected component of $R(\mathcal{C})$ arising from $k$ 
 \end{lemma}
 
 \begin{proof}
-As $A$ is oriented, we can use lemma \ref{lem:7} to repeatedly find a red vertex $u$ in $A$ such that $A_u$ is still oriented and apply $\rho(u)$.
-By lemma \ref{lem:6}, we know that every vertex in $R(\mathcal{C})$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component. Therefore, every alternating cycle represented by vertices in $A$ eventually reduces to a $2$-cycle. Moreover, by lemma \ref{lem:1}, $\rho(u)$ is a $2$-reversal iff $u$ arises from an oriented $2$-cycle.
+As $A$ is oriented, we can use Lemma \ref{lem:7} to repeatedly find a red vertex $u$ in $A$ such that $A_u$ is still oriented and apply $\rho(u)$.
+By Lemma \ref{lem:6}, we know that every vertex in $R(\mathcal{C})$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component. Therefore, every alternating cycle represented by vertices in $A$ eventually reduces to a $2$-cycle. Moreover, by Lemma \ref{lem:1}, $\rho(u)$ is a $2$-reversal iff $u$ arises from an oriented $2$-cycle.
 \end{proof}
 
 \begin{lemma}
@@ -593,8 +593,8 @@ Let $A$ be an unoriented connected component of $R(\mathcal{C})$ arising from $k
 \end{lemma}
 
 \begin{proof}
-Let $u$ be any blue vertex of $A$, then $\rho(u)$ is a $0$-reversal. By lemma \ref{lem:3}, $A_u$ is oriented.
-Now, apply lemma \ref{lem:8} to obtain an elimination sequence for $A_u$.
+Let $u$ be any blue vertex of $A$, then $\rho(u)$ is a $0$-reversal. By Lemma \ref{lem:3}, $A_u$ is oriented.
+Now, apply Lemma \ref{lem:8} to obtain an elimination sequence for $A_u$.
 \end{proof}
 
 Using the elimination sequences we found for the connected components of $R(\mathcal{C})$ we are finally able to give an upper bound to the number of reversals we need to sort $\pi$.
@@ -678,7 +678,7 @@ Let $C$ be an unoriented ladder $2$-cycle in $\mathcal{C}$. Then the vertices of
 \subsection{Approximation bound}
 \label{sec:approximation_bound}
 
-By theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals of at most length $b(\pi) - \frac{1}{2} c_2(\pi)$ achieves an approximation bound of $\frac{3}{2}$.
+By Theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals of at most length $b(\pi) - \frac{1}{2} c_2(\pi)$ achieves an approximation bound of $\frac{3}{2}$.
 
 \begin{theorem}
 \label{thm:6}
@@ -686,13 +686,13 @@ Let $\pi \in S_n$. We are able to find a sorting sequence of at most $b(\pi) - \
 \end{theorem}
 
 \begin{proof}
-Using theorem \ref{thm:5}, first find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ with at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
+Using Theorem \ref{thm:5}, first find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ with at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
 
-Let $k$ be the number of $2$-cycles in oriented connected components of $R(\mathcal{C})$. Let $u$ be the number of unoriented connected components in $R(\mathcal{C})$ that include $l$ selected $2$-cycles and that, by lemma \ref{lem:10}, contain vertices representing remaining unselected $2$-cycles. Let $v$ be the number of remaining unoriented connected components consisting only of vertices representing $m$ independent selected $2$-cycles.
+Let $k$ be the number of $2$-cycles in oriented connected components of $R(\mathcal{C})$. Let $u$ be the number of unoriented connected components in $R(\mathcal{C})$ that include $l$ selected $2$-cycles and that, by Lemma \ref{lem:10}, contain vertices representing remaining unselected $2$-cycles. Let $v$ be the number of remaining unoriented connected components consisting only of vertices representing $m$ independent selected $2$-cycles.
 
 Note that $\mathcal{C}$ has at least $k+l+u+m$ alternating cycles and $R(\mathcal{C})$ has $u+v$ unoriented connected components.
 
-By theorem \ref{thm:4}, we can now sort $\pi$ using at least $k+l+u+m$ $2$-reversals and only $u+v$ $0$-reversals. Therefore
+By Theorem \ref{thm:4}, we can now sort $\pi$ using at least $k+l+u+m$ $2$-reversals and only $u+v$ $0$-reversals. Therefore
 \begin{align*}
     d(\pi) &\leq b(\pi) - k - l - u - m + u + v \\
            &= b(\pi) - k - l - m + v.
@@ -700,7 +700,7 @@ By theorem \ref{thm:4}, we can now sort $\pi$ using at least $k+l+u+m$ $2$-rever
 All that is left to show is $k+l+m-v \geq \frac{1}{2} c_2(\pi)$. We know:
 \begin{enumerate}
     \item $l+m$ is the number of selected $2$-cycles in unoriented connected components of $R(\mathcal{C})$. $k$ is the total number of $2$-cycles in oriented connected components of $R(\mathcal{C})$. As $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $\mathcal{C}$, $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ holds.
-    \item As each connected components of $R(\mathcal{C})$ counted by $v$ represents at least one unoriented $2$-cycle, lemma \ref{lem:5} implies that such a connected component must represent at least two alternating cycles in $\mathcal{C}$. As the connected component only represents independent $2$-cycles, we know that it must represent at least two independent $2$-cycles. As $z$ is the number of independent $2$-cycles, $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ holds.
+    \item As each connected components of $R(\mathcal{C})$ counted by $v$ represents at least one unoriented $2$-cycle, Lemma \ref{lem:5} implies that such a connected component must represent at least two alternating cycles in $\mathcal{C}$. As the connected component only represents independent $2$-cycles, we know that it must represent at least two independent $2$-cycles. As $z$ is the number of independent $2$-cycles, $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ holds.
     \item We also have that the selected $2$-cycles in $M$ are not necessarily edge-disjoint on their blue edges, yielding $|M| = y+z \geq c_2(\pi)$.
 \end{enumerate}
 And therefore
