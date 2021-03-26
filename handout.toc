@@ -1,0 +1,20 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {1}{1}{Symmetric group}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {1}{2}{Reversal distance problem}{5}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {2}{MIN-SBR}{6}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {3}{Breakpoint graph}{7}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {4}{3/2-approximation}{15}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{1}{Reversal graph}{16}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{2}{Matching graph}{26}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{3}{Approximation bound}{28}{0}{4}

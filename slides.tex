@@ -1,0 +1,1005 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{default}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  \setbeamertemplate{footline}[frame number]
+  \setbeamertemplate{itemize items}[circle]
+  \setbeamertemplate{theorems}[numbered]
+  \setbeamercolor*{structure}{bg=white,fg=blue}
+  \setbeamerfont{block title}{size=\normalsize}
+}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{idea}[theorem]{Idea}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{aligned-overset}
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{multicol}
+\usepackage{stmaryrd}
+\usepackage{tabularx}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\usepackage{tikz}
+\tikzstyle{node}=[fill=white, draw=black, shape=circle, minimum size=0.75cm]
+\tikzstyle{blue node}=[fill=white, draw=blue, shape=circle, line width=0.25mm]
+\tikzstyle{red node}=[fill=white, draw=red, shape=circle, line width=0.25mm]
+\tikzstyle{blue edge}=[-, draw=blue, line width=0.25mm]
+\tikzstyle{red edge}=[-, draw=red, line width=0.25mm]
+\tikzstyle{dashed edge}=[-, dashed, line width=0.25mm]
+\pgfdeclarelayer{nodelayer}
+\pgfdeclarelayer{edgelayer}
+\pgfsetlayers{nodelayer,edgelayer}
+
+\def\code#1{\texttt{\frenchspacing#1}}
+\def\padding{\vspace{0.5cm}}
+\def\spadding{\vspace{0.25cm}}
+\def\b{\textcolor{blue}}
+\def\r{\textcolor{red}}
+\def\g#1{{\usebeamercolor[fg]{block title example}{#1}}}
+
+% fix for \pause in align
+\makeatletter
+\let\save@measuring@true\measuring@true
+\def\measuring@true{%
+  \save@measuring@true
+  \def\beamer@sortzero##1{\beamer@ifnextcharospec{\beamer@sortzeroread{##1}}{}}%
+  \def\beamer@sortzeroread##1<##2>{}%
+  \def\beamer@finalnospec{}%
+}
+\makeatother
+
+\usepackage[sorting=ynt,style=alphabetic]{biblatex}
+\addbibresource{sources.bib}
+
+\title[Sorting by Reversals]{Sorting by Reversals}
+\author{Jonas Hübotter}
+\date{July 10, 2020}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+\begin{frame}{Outline}
+ \tableofcontents
+\end{frame}
+
+\section{Motivation}
+
+\subsection{Symmetric group}
+
+\begin{frame}
+
+\begin{definition}
+We define the \b{symmetric group} $\langle S_n, \circ \rangle$ as the group whose elements are all bijections over $[1,n]$ \pause with
+\begin{align*}
+    S_n = \{(0\ \pi_1\ \dots\ \pi_n\ n+1) \mid \{\pi_1, \dots, \pi_n\} = [1,n]\}
+\end{align*}
+where $\pi_i = \pi(i)$, $\pi_0 = 0$, and $\pi_{n+1} = n+1$.\pause\spadding
+
+$\pi \in S_n$ is a \b{permutation}.\pause\spadding
+
+$id = (0\ 1\ \dots\ n\ n+1) \in S_n$ is the \textit{identity permutation}.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+A \b{reversal} $\rho(i,j) \in S_n$ is defined as
+\[
+    \rho(i,j) = (0\ 1\ \cdots\ i-1\ \r j\ \r{j-1}\ \r \cdots\ \r{i+1}\ \r i\ j+1\ \cdots\ n\ n+1)
+\]
+for some $i, j \in [1, n]$ with $j \geq i$.
+\end{definition}\pause
+
+\begin{exampleblock}{Example}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$. \par
+Then
+\begin{align*}
+    \pi \circ \rho(2,4) = (0\ 1\ \r{2\ 4\ 3}\ 5).
+\end{align*}
+\end{exampleblock}
+
+\end{frame}
+
+\subsection{Reversal distance problem}
+
+\begin{frame}
+
+\begin{definition}[reversal distance problem]
+Given two permutations $\sigma, \tau \in S_n$ find a sequence of reversals $\rho_1, \dots, \rho_d \in S_n$ such that
+\begin{align*}
+    \sigma \circ \rho_1 \circ \cdots \circ \rho_d = \tau
+\end{align*}
+and $d$ is minimal. \pause\par\spadding
+$d$ is called \b{reversal distance} between $\sigma$ and $\tau$.
+\end{definition}\pause\padding
+
+Observation: The reversal distance between $\sigma$ and $\tau$ is the same as the reversal distance between $\tau^{-1} \circ \sigma$ and $id$.
+
+\end{frame}
+
+\section{MIN-SBR}
+
+\begin{frame}
+
+\begin{definition}[MIN-SBR]
+Let $\pi = \tau^{-1} \circ \sigma \in S_n$. \par\pause
+\b{Sorting by Reversals} is the problem of finding a sequence of reversals $\rho_1, \dots, \rho_d \in S_n$ such that
+\begin{align*}
+    \pi \circ \rho_1 \circ \cdots \circ \rho_d = id
+\end{align*}
+and $d$ is minimal.
+\end{definition}\pause
+
+\begin{exampleblock}{Example}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$.\pause
+\begin{align*}
+    \pi \circ \rho(2,4) &= (0\ 1\ \r{2\ 4\ 3}\ 5) \\ \pause
+    \pi \circ \rho(2,4) \circ \rho(3,4) &= (0\ 1\ 2\ \r{3\ 4}\ 5) = id
+\end{align*}\pause
+$\implies d(\pi) \leq 2$.
+\end{exampleblock}
+
+\end{frame}
+
+% \begin{frame}
+
+% \begin{algorithm}[ratchet algorithm, \citeauthor*{Watterson19821}]
+% For each element at position $i$, perform $\rho(i, \pi_i^{-1})$ if $i \neq \pi_i$.
+% \end{algorithm}\pause
+
+% \begin{corollary}[tight upper bound, \citeauthor*{Kececioglu1995}]
+% $d(\pi) \leq n - 1$ for all $\pi \in S_n$.
+% \end{corollary}
+
+% \end{frame}
+
+\section{Breakpoint graph}
+
+\begin{frame}
+
+A different perspective: $\pi = (0\ 1\ \r\mid\ 3\ 4\ \r\mid\ 2\ \r\mid\ 5)$\pause\spadding
+
+\begin{definition}
+Let $i \sim j$ if $|i - j| = 1$. \par
+A pair of consecutive elements $\pi_i$ and $\pi_j$ is
+\begin{itemize}
+    \item an \b{adjacency} if $\pi_i \sim \pi_j$; and
+    \item a \b{breakpoint} if $\pi_i \not\sim \pi_j$.
+\end{itemize} \par\pause\spadding
+$\r{b(\pi)}$ denotes the number of breakpoints in $\pi \in S_n$.
+\end{definition}\pause\padding
+
+Observation: $\r{b(\pi)} = 0$ iff $\pi = id$ \pause and any reversal can at most eliminate two breakpoints. \pause\spadding
+
+\begin{corollary}[lower bound, \citeauthor*{Kececioglu1995}]
+$d(\pi) \geq \left\lceil \frac{\r{b(\pi)}}{2} \right\rceil$ for all $\pi \in S_n$.
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}[breakpoint graph, \citeauthor*{Bafna1996}]
+Let $G(\pi) = (V, E)$ with
+\begin{itemize}
+    \item vertices $V = [0, n+1]$ representing the elements of $\pi$\pause; and
+    \item edges $E = \r R \cup \b B$ with
+    \begin{itemize}
+        \item a \r{red} edge for every breakpoint in $\pi$; and
+        \item a \b{blue} edge for every missing adjacency in $\pi$.
+    \end{itemize}
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example}
+Let $\pi = (0\ 1\ \r\mid\ 3\ 4\ \r\mid\ 2\ \r\mid\ 5) \in S_4$. \pause Then $G(\pi)$ is
+
+\spadding\begin{center}
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\end{exampleblock}\pause
+
+Observation: Each vertex has an equal number of incident red and blue edges. \pause\spadding
+
+\begin{corollary}[\citeauthor*{Bafna1996}]
+$G(\pi)$ can be decomposed into edge-disjoint alternating cycles.
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}
+A reversal is called \b{$k$-reversal} if it removes $k$ breakpoints. \pause\spadding
+
+A reversal \b{acts on} two red edges of $G(\pi)$ if those two edges represent the breakpoints that are split apart by the reversal. \pause\spadding
+
+An alternating cycle in $G(\pi)$ is a \b{$k$-cycle} if it has $k$ constituting red edges. \pause\spadding
+
+We call an alternating cycle $C$ in $G(\pi)$ \b{oriented} if there is a $1$- or $2$-reversal acting on two constituting red edges of $C$.
+\end{definition}
+
+\end{frame}
+
+% \begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% \label{lem:2}
+% An oriented alternating cycle is a $2$-cycle iff the corresponding reversal acting on both red edges is a $2$-reversal.
+% \end{lemma}\spadding
+
+% Let $i \sim i'$ and $j \sim j'$.
+
+% \begin{figure}
+% \begin{center}
+% \begin{tikzpicture}
+% 	\begin{pgfonlayer}{nodelayer}
+% 		\node [style=node] (0) at (-1.25, 0) {i};
+% 		\node [style=node] (1) at (1.25, 0) {i'};
+% 		\node [style=node] (2) at (3, 0) {j'};
+% 		\node [style=node] (3) at (-3, 0) {j};
+% 		\node (4) at (0, 0) {$\dots$};
+% 		\node (5) at (-4.25, 0) {$\dots$};
+% 		\node (6) at (4.25, 0) {$\dots$};
+% 	\end{pgfonlayer}
+% 	\begin{pgfonlayer}{edgelayer}
+% 		\draw [style=blue edge, bend right] (2) to (3);
+% 		\draw [style=blue edge, bend left] (0) to (1);
+% 		\draw [style=red edge] (3) to (0);
+% 		\draw [style=red edge] (1) to (2);
+% 	\end{pgfonlayer}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Unoriented $2$-cycle}
+% \end{figure}
+
+% \begin{figure}
+% \begin{center}
+% \begin{tikzpicture}
+% 	\begin{pgfonlayer}{nodelayer}
+% 		\node [style=node] (0) at (-1.25, 0) {i};
+% 		\node [style=node] (1) at (1.25, 0) {j'};
+% 		\node [style=node] (2) at (3, 0) {i'};
+% 		\node [style=node] (3) at (-3, 0) {j};
+% 		\node (4) at (0, 0) {$\dots$};
+% 		\node (5) at (-4.25, 0) {$\dots$};
+% 		\node (6) at (4.25, 0) {$\dots$};
+% 	\end{pgfonlayer}
+% 	\begin{pgfonlayer}{edgelayer}
+% 		\draw [style=blue edge, bend right] (3) to (1);
+% 		\draw [style=blue edge, bend left] (0) to (2);
+% 		\draw [style=red edge] (3) to (0);
+% 		\draw [style=red edge] (1) to (2);
+% 	\end{pgfonlayer}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Oriented $2$-cycle}
+% \end{figure}
+
+% \end{frame}
+
+\begin{frame}
+
+Let $\g{c(\pi)}$ denote the maximum number of alternating cycles in any alternating cycle decomposition of $G(\pi)$. \pause\padding
+
+\begin{theorem}[\citeauthor*{Bafna1996}]
+\label{thm:1}
+Let $\pi, \rho \in S_n$ and $\rho$ be a reversal. \pause Then
+\begin{align*}
+    \r{b(\pi)} - \r{b(\pi \circ \rho)} + \g{c(\pi \circ \rho)} - \g{c(\pi)} \leq 1.
+\end{align*}
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{proof}
+To show: $\r{b(\pi)} - \r{b(\pi \circ \rho)} + \g{c(\pi \circ \rho)} - \g{c(\pi)} \leq 1$. \par
+We consider each case $\r{b(\pi)} - \r{b(\pi \circ \rho)} \in [-2, 2]$ separately.\pause
+\begin{enumerate}
+    \item A $2$-reversal removes at least one alternating cycle from the maximum alternating cycle decomposition.
+        \begin{tabularx}{\textwidth}{XcX}
+            \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+            	\begin{pgfonlayer}{nodelayer}
+            		\node [style=node] (0) at (-1.25, 0) {i};
+            		\node [style=node] (1) at (1.25, 0) {j'};
+            		\node [style=node] (2) at (3, 0) {i'};
+            		\node [style=node] (3) at (-3, 0) {j};
+            		\node (4) at (0, 0) {$\dots$};
+            	\end{pgfonlayer}
+            	\begin{pgfonlayer}{edgelayer}
+            		\draw [style=blue edge, bend right] (3) to (1);
+            		\draw [style=blue edge, bend left] (0) to (2);
+            		\draw [style=red edge] (3) to (0);
+            		\draw [style=red edge] (1) to (2);
+            	\end{pgfonlayer}
+            \end{tikzpicture} & $\rightarrow$ &
+            \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+            	\begin{pgfonlayer}{nodelayer}
+            		\node [style=node] (0) at (-1.25, 0) {j'};
+            		\node [style=node] (1) at (1.25, 0) {i};
+            		\node [style=node] (2) at (3, 0) {i'};
+            		\node [style=node] (3) at (-3, 0) {j};
+            		\node (4) at (0, 0) {$\dots$};
+            	\end{pgfonlayer}
+            \end{tikzpicture}
+        \end{tabularx}\pause
+
+    \item A $1$-reversal does not add an alternating cycle to the maximum alternating cycle decomposition.
+        \begin{tabularx}{\textwidth}{XcX}
+            \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+            	\begin{pgfonlayer}{nodelayer}
+            		\node [style=node] (0) at (-1.25, 0) {i};
+            		\node [style=node] (1) at (1.25, 0) {j'};
+            		\node [style=node] (2) at (3, 0) {k};
+            		\node [style=node] (3) at (-3, 0) {j};
+            		\node (4) at (0, 0) {$\dots$};
+            	\end{pgfonlayer}
+            	\begin{pgfonlayer}{edgelayer}
+            		\draw [style=blue edge, bend right] (3) to (1);
+            		\draw [style=red edge] (3) to (0);
+            		\draw [style=red edge] (1) to (2);
+            		\draw [style=dashed edge, bend left] (0) to (2);
+            	\end{pgfonlayer}
+            \end{tikzpicture} & $\rightarrow$ &
+            \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+            	\begin{pgfonlayer}{nodelayer}
+            		\node [style=node] (0) at (-1.25, 0) {j'};
+            		\node [style=node] (1) at (1.25, 0) {i};
+            		\node [style=node] (2) at (3, 0) {k};
+            		\node [style=node] (3) at (-3, 0) {j};
+            		\node (4) at (0, 0) {$\dots$};
+            	\end{pgfonlayer}
+            	\begin{pgfonlayer}{edgelayer}
+            		\draw [style=red edge] (1) to (2);
+            		\draw [style=dashed edge, bend left] (1) to (2);
+            	\end{pgfonlayer}
+            \end{tikzpicture}
+        \end{tabularx}
+\end{enumerate}\pause
+Proof for other cases similar.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}[lower bound, \citeauthor*{Bafna1996}]
+\label{thm:2}
+Let $\pi \in S_n$. Then
+\begin{align*}
+    d(\pi) \geq \r{b(\pi)} - \g{c(\pi)}.
+\end{align*}
+\end{theorem}\pause
+
+\begin{proof}
+Let $\pi_t = \pi, \pi_0 = id$ and $\rho_1, \dots, \rho_t$ a shortest sequence of reversals from $\pi_t$ to $\pi_0$. \pause Then
+\begin{align*}
+    d(\pi_i) &= d(\pi_{i-1}) + 1 \\ \pause
+             \overset{(\ref{thm:1})}&{\geq} d(\pi_{i-1}) + \r{b(\pi_i)} - \r{b(\pi_{i-1})} + \g{c(\pi_{i-1})} - \g{c(\pi_i)} \\[0.25cm] \pause
+    \iff & \begin{aligned}[t]
+    d(\pi_i) - (\r{b(\pi_i)} - \g{c(\pi_i)}) &\geq d(\pi_{i-1}) - (\r{b(\pi_{i-1})} - \g{c(\pi_{i-1})}) \\ \pause
+                                     &\geq d(\pi_0) - (\r{b(\pi_0)} - \g{c(\pi_0)})\pause = 0
+    \end{aligned}
+\end{align*}\pause
+Setting $i=t$, proves the theorem.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}[lower bound with $2$-cycles, \citeauthor*{Christie1998}]
+\label{thm:3}
+Let $\pi \in S_n$ and $\mathcal{C}$ be a maximum alternating cycle decomposition of $G(\pi)$. Let $\g{c_2(\pi)}$ be the minimum number of alternating $2$-cycles in any such $\mathcal{C}$. Then
+\begin{align*}
+    d(\pi) \geq \frac{2}{3} \r{b(\pi)} - \frac{1}{3} \g{c_2(\pi)}.
+\end{align*}
+\end{theorem}
+
+\end{frame}
+
+\section{3/2-approximation}
+
+\begin{frame}
+
+\begin{block}{$\frac{3}{2}$-approximation}
+By theorem \ref{thm:3}, an algorithm that finds a sorting sequence of reversals of at most length $\r{b(\pi)} - \frac{1}{2} \g{c_2(\pi)}$ achieves an approximation bound of $\frac{3}{2}$. \pause\spadding
+
+We find such an algorithm in two steps:
+\begin{enumerate}
+    \item given an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ we find a sorting sequence of reversals for $\pi$\pause; and
+    \item we find an alternating cycle decomposition of $G(\pi)$ maximizing the number of $2$-cycles.
+\end{enumerate}
+\end{block}\pause
+
+Lastly, we prove the approximation bound.
+
+\end{frame}
+
+\subsection{Reversal graph}
+
+\begin{frame}
+
+\begin{definition}[reversal graph, \citeauthor*{Christie1998}]
+Given an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$, \par\pause
+define $R(\mathcal{C})$ with
+\begin{itemize}
+    \item an isolated \b{blue} vertex for each adjacency in $\pi$\pause;
+    \item $m$ vertices for each $m$-cycle in $\mathcal{C}$ each representing the reversal $\rho(u)$ acting on the two red edges connected by a blue edge\pause;
+    \begin{itemize}
+        \item a vertex is \r{red} if the represented reversal is a $1$- or $2$-reversal
+        \item a vertex is \b{blue} otherwise
+    \end{itemize}\pause
+    \item connect two vertices with an edge if their corresponding blue edges \textit{interleave}.
+\end{itemize}
+\end{definition}\pause
+
+Observation: The only alternating cycle decomposition of $G(id)$ is $\mathcal{C} = \emptyset$.\pause
+
+\begin{corollary}[\citeauthor*{Christie1998}]
+$R(\emptyset)$ consists of $n+1$ isolated blue vertices.
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$. \par
+Given the alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$
+
+\begin{tabularx}{\textwidth}{XR}
+{\footnotesize\begin{align*}
+    \mathcal{C} = \{(&\{1,3\},\{2,3\},\{2,4\}, \\
+                     &\{4,5\},\{2,5\},\{1,2\})\}
+\end{align*}} &
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{tabularx}\pause
+
+construct $R(\mathcal{C})$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+		\draw (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\end{exampleblock}\pause
+
+Idea: Each connected component of $R(\mathcal{C})$ can be sorted separately.
+
+\end{frame}
+
+\begin{frame}
+
+Let $u$ be a vertex of $R(\mathcal{C})$ representing reversal $\rho(u)$.\pause
+
+\begin{definition}
+Denote by $\mathcal{C}_u$ the alternating cycle decomposition of $G(\pi \circ \rho(u))$ that is obtained from $\mathcal{C}$.% by removing one 2-cycle or shortening one of its cycles by one red edge.
+\end{definition}\pause
+
+\begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:5}
+$R(\mathcal{C}_u)$ can be derived from $R(\mathcal{C})$ by making the following changes to $R(\mathcal{C})$:\pause
+\begin{enumerate}
+    \item flip the color of every vertex adjacent to $u$\pause;
+    \item flip the adjacency of every pair of vertices adjacent to $u$\pause; and
+    \item if $u$ is a red vertex, turn it into an isolated blue vertex.
+\end{enumerate}
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u = \{1,2\}$.\padding
+
+\begin{tabularx}{\textwidth}{X|R}
+$G(\pi)$ and $R(\mathcal{C})$ & $G(\pi \circ \rho(u))$ and $R(\mathcal{C}_u)$ \\ \hline
+\spadding\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture} &
+\onslide<2->{\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {3};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (2) to (3);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}}\\
+\spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+		\draw (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture} &
+\onslide<3->{\spadding\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=red node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}}
+\end{tabularx}
+\end{exampleblock}
+
+\end{frame}
+
+% \begin{frame}
+
+% \begin{corollary}[\citeauthor*{Christie1998}]
+% A reversal $\rho(u)$ affects only vertices that are in the same connected component as $u$.
+% \end{corollary}\pause
+
+% \begin{corollary}[\citeauthor*{Christie1998}]
+% $R(\mathcal{C})$ contains no isolated blue vertices arising from cycles in $\mathcal{C}$.
+% \end{corollary}
+
+% \end{frame}
+
+\begin{frame}
+
+\begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:3}
+All vertices arising from the same alternating cycle in $\mathcal{C}$ are in the same connected component of $R(\mathcal{C})$.
+\end{lemma}\pause
+
+\begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:7}
+Vertices arising from an unoriented $2$-cycle of $\mathcal{C}$ must be in a connected component of $R(\mathcal{C})$ with vertices arising from at least one more alternating cycle of $\mathcal{C}$.
+\end{lemma}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {};
+		\node [style=node] (1) at (-1.25, 0) {};
+		\node [style=node] (2) at (1.25, 0) {};
+		\node [style=node] (3) at (3, 0) {};
+		\node (4) at (0, 0) {$\dots$};
+		\node (5) at (-4.25, 0) {$\dots$};
+		\node (6) at (4.25, 0) {$\dots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=blue edge, bend left] (0) to node[sloped,midway,above] {u} (3);
+		\draw  [style=blue edge, bend right](1) to node[sloped,midway,below] {v} (2);
+		\draw [style=red edge] (0) to (1);
+		\draw [style=red edge] (2) to (3);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{center}
+\caption{Unoriented $2$-cycle}
+\end{figure}
+
+% \begin{proof}
+% Let $u$ and $v$ represent the blue edges of an unoriented $2$-cycle of $\mathcal{C}$. \par\pause
+% Then its two constituting blue edges do not interleave. Hence, $R(\mathcal{C})$ does not connect $u$ and $v$ with an edge. \par\pause
+% If its constituting blue edges do not interleave with blue edges of any other alternating cycle of $\mathcal{C}$, then $u$ and $v$ would be isolated blue vertices. \b{$\lightning$}
+% \end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+We call a connected component of $R(\mathcal{C})$ \b{oriented} if it contains a red vertex or if it consists solely of an isolated blue vertex. \pause\spadding
+
+Let $A$ be a connected component of $R(\mathcal{C})$. We denote by $A_u$ the subgraph of $R(\mathcal{C}_u)$ that contains all the vertices of $A$.
+\end{definition}\pause
+
+\begin{lemma}[\citeauthor*{Christie1998}]
+\label{lem:4}
+If a connected component $A$ of $R(\mathcal{C})$ is oriented and not an isolated blue vertex, it contains a red vertex $u$ such that $A_u$ is still oriented.
+\end{lemma}
+
+% \begin{definition}
+% A sequence of reversals that turns the connected component $A$ of $R(\mathcal{C})$ into an isolated blue vertex, is called an \b{elemination sequence} for $A$.
+% \end{definition}\pause
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$\spadding
+
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {3};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {2};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (1) to (2);
+		\draw [style=red edge] (3) to (4);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend right] (1) to (4);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=red node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+		\draw (1) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$\spadding
+
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {4};
+		\node [style=node] (4) at (3, 0) {3};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=red edge] (2) to (3);
+		\draw [style=red edge] (4) to (5);
+		\draw [style=blue edge, bend left] (2) to (4);
+		\draw [style=blue edge, bend left] (3) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=red node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (2);
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Example (elimination sequence)}
+Let $\pi = (0\ 1\ 3\ 4\ 2\ 5) \in S_4$ and $u_1 = \{1,2\}$, $u_2 = \{2,3\}$.\spadding
+
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=node] (0) at (-3, 0) {0};
+		\node [style=node] (1) at (-1.5, 0) {1};
+		\node [style=node] (2) at (0, 0) {2};
+		\node [style=node] (3) at (1.5, 0) {3};
+		\node [style=node] (4) at (3, 0) {4};
+		\node [style=node] (5) at (4.5, 0) {5};
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}\spadding
+\begin{center}\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=blue node] (0) at (0, 1) {$\{2,3\}$};
+		\node [style=blue node] (1) at (-2, 1) {$\{1,2\}$};
+		\node [style=blue node] (2) at (-1, -1) {$\{4,5\}$};
+		\node [style=blue node] (3) at (2, -1) {$\{3,4\}$};
+		\node [style=blue node] (4) at (2, 1) {$\{0,1\}$};
+	\end{pgfonlayer}
+\end{tikzpicture}\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+% \begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% \label{lem:6}
+% Let $A$ be an oriented connected component of $R(\mathcal{C})$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains $k$ $2$-reversals with all the other reversals being $1$-reversals.
+% \end{lemma}\pause
+
+% \begin{proof}
+% We know that
+% \begin{itemize}
+%     \item every vertex in $R(\mathcal{C})$ arising from an alternating cycle of $G(\pi)$ is contained within the same connected component (lemma \ref{lem:3})\pause;
+%     \item  as $A$ is oriented, we can use lemma \ref{lem:4} to repeatedly find a red vertex $u$ in $A$ and apply $\rho(u)$\pause; and
+%     \item $\rho(u)$ is a $2$-reversal iff $u$ arises from a $2$-cycle (lemma \ref{lem:2}).
+% \end{itemize}\pause
+% Every alternating cycle represented by vertices constituting $A$ eventually reduces to a $2$-cycle.
+% \end{proof}
+
+% \end{frame}
+
+\begin{frame}
+
+% \begin{lemma}[\citeauthor*{Christie1998}]
+% Let $A$ be an unoriented connected component of $R(\mathcal{C})$ arising from $k$ different alternating cycles of $G(\pi)$. Then there is an \textit{elimination sequence} for $A$ that contains one $0$-reversal, $k$ $2$-reversals, with all the other reversals being $1$-reversals.
+% \end{lemma}\pause
+
+% \begin{proof}
+% Let $\rho(u)$ be a $0$-reversal. Then $A_u$ is oriented (lemma \ref{lem:5}). \par\pause
+% Now apply lemma \ref{lem:6} to obtain an elimination sequence for $A_u$.
+% \end{proof}\pause
+
+Observations:
+\begin{itemize}
+    \item Every connected component $A$ arising from $k$ different alternating cycles of $G(\pi)$, eventually reduces to $k$ $2$-cycles.\pause
+    \item There exists an elimination sequence of $A$ with $k$ $2$-reversals and remaining $1$-reversals.\pause
+    \item An unoriented connected component requires one initial $0$-reversal.
+\end{itemize}\spadding\pause
+
+\begin{theorem}[\citeauthor*{Christie1998}]
+\label{thm:4}
+Let $\pi \in S_n$ and $\mathcal{C}$ be an alternating cycle decomposition of $G(\pi)$. Then
+\begin{align*}
+    d(\pi) \leq \r{b(\pi)} - |\mathcal{C}| + u(\mathcal{C})
+\end{align*}
+where $u(\mathcal{C})$ is the number of unoriented components in $R(\mathcal{C})$.
+\end{theorem}
+
+\end{frame}
+
+\subsection{Matching graph}
+
+\begin{frame}
+
+Goal: Find a cycle decomposition of $G(\pi)$ that has a large number of $2$-cycles.\pause
+
+\begin{idea}
+\begin{enumerate}
+    \item Construct a \b{matching graph} $F(\pi)$ where vertices represent red edges in $G(\pi)$ and vertices $u, v$ are adjacent if they form a $2$-cycle in $G(\pi)$. \par\pause
+    \item Find maximum cardinality matching $M$ of $F(\pi)$.\pause
+    \item Use a \b{ladder graph} $L(M)$ with vertices representing $2$-cycles in $M$ and form connected components (\textit{ladders}) with $2$-cycles sharing a blue edge in $G(\pi)$.
+\end{enumerate}
+\end{idea}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+We call a $2$-cycle \b{selected} if its corresponding edge of $F(\pi)$ is in $M$.\pause\spadding
+
+A selected $2$-cycle is called \b{independent} if it is not part of a ladder. Otherwise it is called a \b{ladder $2$-cycle}.
+\end{definition}\pause\padding
+
+Let $z$ be the number of independent $2$-cycles, and $y$ the number of ladder $2$-cycles.\pause
+
+\begin{theorem}[\citeauthor*{Christie1998}]
+\label{thm:5}
+Given a maximum cardinality matching $M$ of $F(\pi)$ it is possible to find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ that contains at least $\left\lceil \frac{y}{2} \right\rceil$ ladder $2$-cycles and $z$ independent $2$-cycles.
+\end{theorem}
+
+% \begin{proof}
+% Let $\mathcal{C}$ contain all independent $2$-cycles from $L(M)$ and every alternate cycle of each ladder. \par\pause
+% Obtain the rest of $\mathcal{C}$ by adding any alternating cycle decomposition of the remaining unused edges of $G(\pi)$.
+% \end{proof}
+
+\end{frame}
+
+\subsection{Approximation bound}
+
+\begin{frame}
+
+\begin{theorem}[\citeauthor*{Christie1998}]
+\label{thm:6}
+Let $\pi \in S_n$. Then
+\begin{align*}
+    d(\pi) \leq \r{b(\pi)} - \frac{1}{2} \g{c_2(\pi)}.
+\end{align*}
+\end{theorem}\pause
+
+\begin{proof}\renewcommand{\qedsymbol}{}
+Using theorem \ref{thm:5}, first find an alternating cycle decomposition $\mathcal{C}$ of $G(\pi)$ with at least $\left\lceil \frac{y}{2} \right\rceil$ $2$-cycles as part of ladders and $z$ independent $2$-cycles.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{proof}[Proof (cont.)]\renewcommand{\qedsymbol}{}
+\begin{itemize}
+    \item Let $k$ be the number of $2$-cycles in oriented connected components of $R(\mathcal{C})$.\pause
+    \item Let $u$ be the number of unoriented connected components in $R(\mathcal{C})$ that include $l$ selected $2$-cycles and that contain vertices representing remaining unselected $2$-cycles.\pause
+    \item Let $v$ be the number of remaining unoriented connected components consisting only of vertices representing $m$ independent selected $2$-cycles.
+\end{itemize}\pause
+By theorem \ref{thm:4}, we can sort $\pi$ using at least $k+l+u+m$ $2$-reversals and only $u+v$ $0$-reversals. \pause Therefore
+\begin{align*}
+    d(\pi) &\leq \r{b(\pi)} - k - l - u - m + u + v \\
+           &= \r{b(\pi)} - k - l - m + v
+\end{align*}\pause
+Left to show: $-k-l-m+v \leq - \frac{1}{2} \g{c_2(\pi)}$.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{proof}[Proof (cont.)]
+Left to show: $k+l+m-v \geq \frac{1}{2} \g{c_2(\pi)}$. \pause We know that
+\begin{enumerate}
+    \item $k+l+m \geq \left\lceil \frac{y}{2} \right\rceil + z$ as $\left\lceil \frac{y}{2} \right\rceil + z$ is the number of selected $2$-cycles in $\mathcal{C}$\pause;
+    \item $v \leq \left\lfloor \frac{z}{2} \right\rfloor$ as every unoriented component representing a $2$-cycle represents at least one more alternating cycle (lemma \ref{lem:7})\pause; and
+    \item $|M| = y+z \geq \g{c_2(\pi)}$.
+\end{enumerate}\pause
+\begin{align*}
+    k+l+m-v &\geq \left\lceil \frac{y}{2} \right\rceil + z - v                                          & (1) \\ \pause
+            &\geq \left\lceil \frac{y}{2} \right\rceil + z - \left\lfloor \frac{z}{2} \right\rfloor     & (2) \\ \pause
+            &= \left\lceil \frac{y}{2} \right\rceil + \left\lceil \frac{z}{2} \right\rceil \\ \pause
+            &\geq \frac{1}{2} \g{c_2(\pi)}                                                              & (3)
+\end{align*}
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+Run time: $O(n^4)$, can be improved to $O(n^2)$ (\citeauthor*{Kaplan1997}).\spadding
+
+\begin{block}{Summary}
+\begin{itemize}
+    \item the number of alternating cycles in a breakpoint graph $G(\pi)$ is related to $d(\pi)$
+    \item a sorting sequence of reversals can be constructed from an alternating cycle decomposition of $G(\pi)$
+\end{itemize}
+\end{block}
+
+\begin{block}{Outlook}
+\begin{itemize}
+    \item there exists a $1.375$-approximation (\citeauthor*{Berman2001})
+    \item MIN-SBR for signed permutations is in $P$ (\citeauthor*{Hannenhalli1995})
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+
+\printbibliography
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,15 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'slides.blg'
+[104] biber:340> INFO - === Fri Mar 26, 2021, 08:09:39
+[125] Biber.pm:415> INFO - Reading 'slides.bcf'
+[216] Biber.pm:952> INFO - Found 6 citekeys in bib section 0
+[232] Biber.pm:4340> INFO - Processing section 0
+[244] Biber.pm:4531> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[246] bibtex.pm:1689> INFO - LaTeX decoding ...
+[266] bibtex.pm:1494> INFO - Found BibTeX data source 'sources.bib'
+[348] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[348] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[348] Biber.pm:4168> INFO - Sorting list 'ynt/global//global/global' of type 'entry' with template 'ynt' and locale 'en-US'
+[348] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[355] bbl.pm:654> INFO - Writing 'slides.bbl' with encoding 'UTF-8'
+[358] bbl.pm:757> INFO - Output to slides.bbl

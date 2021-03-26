@@ -1,0 +1,386 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{Micali1980}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fb54c363f1b0d126e883c84df49e4790}{%
+           family={Micali},
+           familyi={M\bibinitperiod},
+           given={Silvio},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4391dea254c3bbcaff1fefed241caed0}{%
+           family={Vazirani},
+           familyi={V\bibinitperiod},
+           given={Vijay\bibnamedelima V.},
+           giveni={V\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{db22eec077d6987611522b2ef7cc34dd}
+      \strng{fullhash}{db22eec077d6987611522b2ef7cc34dd}
+      \strng{bibnamehash}{db22eec077d6987611522b2ef7cc34dd}
+      \strng{authorbibnamehash}{db22eec077d6987611522b2ef7cc34dd}
+      \strng{authornamehash}{db22eec077d6987611522b2ef7cc34dd}
+      \strng{authorfullhash}{db22eec077d6987611522b2ef7cc34dd}
+      \field{labelalpha}{MV80}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{21st Annual Symposium on Foundations of Computer Science (sfcs 1980)}
+      \field{title}{An $O(|V|^{1/2}|E|)$ algoithm for finding maximum matching in general graphs}
+      \field{year}{1980}
+      \field{pages}{17\bibrangedash 27}
+      \range{pages}{11}
+    \endentry
+    \entry{Watterson19821}{article}{}
+      \name{author}{4}{}{%
+        {{hash=540149c56b9ace7950f0a56344e3ac8c}{%
+           family={Watterson},
+           familyi={W\bibinitperiod},
+           given={G.A.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=763dfe1841d054a00448c9a2cfc11985}{%
+           family={Ewens},
+           familyi={E\bibinitperiod},
+           given={W.J.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=e5ca8e2c83afa141c683fe661c2cdf64}{%
+           family={Hall},
+           familyi={H\bibinitperiod},
+           given={T.E.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9596823b86028e560784842ec3322d51}{%
+           family={Morgan},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{359fe65ca6d842dbb9c9ac5aba30aa03}
+      \strng{fullhash}{feb6970f8f7784b38b5a448e004ae387}
+      \strng{bibnamehash}{359fe65ca6d842dbb9c9ac5aba30aa03}
+      \strng{authorbibnamehash}{359fe65ca6d842dbb9c9ac5aba30aa03}
+      \strng{authornamehash}{359fe65ca6d842dbb9c9ac5aba30aa03}
+      \strng{authorfullhash}{feb6970f8f7784b38b5a448e004ae387}
+      \field{labelalpha}{Wat+82}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Theoretical Biology}
+      \field{number}{1}
+      \field{title}{The chromosome inversion problem}
+      \field{volume}{99}
+      \field{year}{1982}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0022-5193(82)90384-8
+      \endverb
+    \endentry
+    \entry{Hannenhalli1995}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=587f36f43ff9a1df3a7660807266c117}{%
+           family={Hannenhalli},
+           familyi={H\bibinitperiod},
+           given={Sridhar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=84ab1c0a62cd75beb152b941a81de6e0}{%
+           family={Pevzner},
+           familyi={P\bibinitperiod},
+           given={Pavel},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{fullhash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{bibnamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authorbibnamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authornamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authorfullhash}{83f21be831f54ef2c19e26e55b74e512}
+      \field{labelalpha}{HP95}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Twenty-Seventh Annual ACM Symposium on Theory of Computing}
+      \field{series}{STOC ’95}
+      \field{title}{Transforming Cabbage into Turnip: Polynomial Algorithm for Sorting Signed Permutations by Reversals}
+      \field{year}{1995}
+      \field{pages}{178\bibrangedash 189}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/225058.225112
+      \endverb
+    \endentry
+    \entry{Kececioglu1995}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9a6bcdd1340153d7cd719b4ea865f749}{%
+           family={Kececioglu},
+           familyi={K\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1646d539ebf323a745a98276953a6a6b}{%
+           family={Sankoff},
+           familyi={S\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{fullhash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{bibnamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authorbibnamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authornamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authorfullhash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \field{labelalpha}{KS95}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Algorithmica}
+      \field{number}{1}
+      \field{title}{{Exact and approximation algorithms for sorting by reversals, with application to genome rearrangement}}
+      \field{volume}{13}
+      \field{year}{1995}
+      \field{pages}{180}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/BF01188586
+      \endverb
+    \endentry
+    \entry{Bafna1996}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2a9a73d9d465079f806c59f4e41daf13}{%
+           family={Bafna},
+           familyi={B\bibinitperiod},
+           given={Vineet},
+           giveni={V\bibinitperiod}}}%
+        {{hash=dd2b06e11c769cef717da43a03f50670}{%
+           family={Pevzner},
+           familyi={P\bibinitperiod},
+           given={Pavel\bibnamedelima A},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{fullhash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{bibnamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authorbibnamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authornamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authorfullhash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \field{labelalpha}{BP96}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM J. Comput.}
+      \field{number}{2}
+      \field{title}{{Genome Rearrangements and Sorting by Reversals}}
+      \field{volume}{25}
+      \field{year}{1996}
+      \field{pages}{272\bibrangedash 289}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1137/S0097539793250627
+      \endverb
+    \endentry
+    \entry{Caprara1997}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=7fc8f5d00abfb5214777eac168ad4ed4}{%
+           family={Caprara},
+           familyi={C\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \strng{fullhash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \strng{bibnamehash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \strng{authorbibnamehash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \strng{authornamehash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \strng{authorfullhash}{7fc8f5d00abfb5214777eac168ad4ed4}
+      \field{labelalpha}{Cap97}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the First Annual International Conference on Computational Molecular Biology}
+      \field{series}{RECOMB '97}
+      \field{title}{{Sorting by Reversals is Difficult}}
+      \field{year}{1997}
+      \field{pages}{75\bibrangedash 83}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1145/267521.267531
+      \endverb
+    \endentry
+    \entry{Kaplan1997}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=74fc28f5c63cf11e0fa303a99e5e55a5}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+        {{hash=da4ba3cdc3a779401374c18d71ad03b2}{%
+           family={Shamir},
+           familyi={S\bibinitperiod},
+           given={Ron},
+           giveni={R\bibinitperiod}}}%
+        {{hash=554d334d2af10fcbf6d59d1194d9191b}{%
+           family={Tarjan},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{fullhash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{bibnamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authorbibnamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authornamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authorfullhash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \field{labelalpha}{KST97}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM J. Comput.}
+      \field{title}{Faster and simpler algorithm for sorting signed permutations by reversals}
+      \field{volume}{29}
+      \field{year}{1997}
+      \field{pages}{163}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1137/S0097539798334207
+      \endverb
+    \endentry
+    \entry{Christie1998}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=3a46914cbd4c2c069c754e7b212e7517}{%
+           family={Christie},
+           familyi={C\bibinitperiod},
+           given={David\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{fullhash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{bibnamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authorbibnamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authornamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authorfullhash}{3a46914cbd4c2c069c754e7b212e7517}
+      \field{labelalpha}{Chr98}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Ninth Annual ACM-SIAM Symposium on Discrete Algorithms}
+      \field{isbn}{0898714109}
+      \field{series}{SODA '98}
+      \field{title}{{A 3/2-Approximation Algorithm for Sorting by Reversals}}
+      \field{year}{1998}
+      \field{pages}{244\bibrangedash 252}
+      \range{pages}{9}
+    \endentry
+    \entry{Berman1999}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=994791de889032e5fa28581805545b2e}{%
+           family={Berman},
+           familyi={B\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5482fd910692daec95489dd87da34892}{%
+           family={Karpinski},
+           familyi={K\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=97e411b9f62bb4e2534fd233917caaae}{%
+           family={Wiedermann},
+           familyi={W\bibinitperiod},
+           given={Jiří},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c626dbdc354cccf27edce7d2c01c8b56}{%
+           family={Emde\bibnamedelima Boas},
+           familyi={E\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=3281cbf0581655dba2dcc4960e9b2bc2}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Mogens},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{fullhash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{bibnamehash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{authorbibnamehash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{authornamehash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{authorfullhash}{eed3acc2b5a912a402c3c8e1ee21f62f}
+      \strng{editorbibnamehash}{26895fe5448518146a76e5a3276b6eca}
+      \strng{editornamehash}{26895fe5448518146a76e5a3276b6eca}
+      \strng{editorfullhash}{26895fe5448518146a76e5a3276b6eca}
+      \field{labelalpha}{BK99}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Automata, Languages and Programming}
+      \field{title}{On Some Tighter Inapproximability Results (Extended Abstract)}
+      \field{year}{1999}
+      \field{pages}{200\bibrangedash 209}
+      \range{pages}{10}
+    \endentry
+    \entry{Berman2001}{article}{}
+      \name{author}{3}{}{%
+        {{hash=994791de889032e5fa28581805545b2e}{%
+           family={Berman},
+           familyi={B\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=587f36f43ff9a1df3a7660807266c117}{%
+           family={Hannenhalli},
+           familyi={H\bibinitperiod},
+           given={Sridhar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5482fd910692daec95489dd87da34892}{%
+           family={Karpinski},
+           familyi={K\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{fullhash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{bibnamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authorbibnamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authornamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authorfullhash}{43ef413b1a572e084f30e1eaac6b9045}
+      \field{labelalpha}{BHK01}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Colloquium on Computational Complexity (ECCC)}
+      \field{month}{01}
+      \field{title}{1.375-Approximation Algorithm for Sorting by Reversals}
+      \field{volume}{8}
+      \field{year}{2001}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

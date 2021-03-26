@@ -1,0 +1,230 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{Hannenhalli1995}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=587f36f43ff9a1df3a7660807266c117}{%
+           family={Hannenhalli},
+           familyi={H\bibinitperiod},
+           given={Sridhar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=84ab1c0a62cd75beb152b941a81de6e0}{%
+           family={Pevzner},
+           familyi={P\bibinitperiod},
+           given={Pavel},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{fullhash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{bibnamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authorbibnamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authornamehash}{83f21be831f54ef2c19e26e55b74e512}
+      \strng{authorfullhash}{83f21be831f54ef2c19e26e55b74e512}
+      \field{labelalpha}{HP95}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Twenty-Seventh Annual ACM Symposium on Theory of Computing}
+      \field{series}{STOC ’95}
+      \field{title}{Transforming Cabbage into Turnip: Polynomial Algorithm for Sorting Signed Permutations by Reversals}
+      \field{year}{1995}
+      \field{pages}{178\bibrangedash 189}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/225058.225112
+      \endverb
+    \endentry
+    \entry{Kececioglu1995}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9a6bcdd1340153d7cd719b4ea865f749}{%
+           family={Kececioglu},
+           familyi={K\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1646d539ebf323a745a98276953a6a6b}{%
+           family={Sankoff},
+           familyi={S\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{fullhash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{bibnamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authorbibnamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authornamehash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \strng{authorfullhash}{fef551d7b80f73d601da9ae7b8e6c1ab}
+      \field{labelalpha}{KS95}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Algorithmica}
+      \field{number}{1}
+      \field{title}{{Exact and approximation algorithms for sorting by reversals, with application to genome rearrangement}}
+      \field{volume}{13}
+      \field{year}{1995}
+      \field{pages}{180}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/BF01188586
+      \endverb
+    \endentry
+    \entry{Bafna1996}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2a9a73d9d465079f806c59f4e41daf13}{%
+           family={Bafna},
+           familyi={B\bibinitperiod},
+           given={Vineet},
+           giveni={V\bibinitperiod}}}%
+        {{hash=dd2b06e11c769cef717da43a03f50670}{%
+           family={Pevzner},
+           familyi={P\bibinitperiod},
+           given={Pavel\bibnamedelima A},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{fullhash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{bibnamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authorbibnamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authornamehash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \strng{authorfullhash}{01cd1fb4f3c2e82617fffdc26072d6e9}
+      \field{labelalpha}{BP96}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM J. Comput.}
+      \field{number}{2}
+      \field{title}{{Genome Rearrangements and Sorting by Reversals}}
+      \field{volume}{25}
+      \field{year}{1996}
+      \field{pages}{272\bibrangedash 289}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1137/S0097539793250627
+      \endverb
+    \endentry
+    \entry{Kaplan1997}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=74fc28f5c63cf11e0fa303a99e5e55a5}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+        {{hash=da4ba3cdc3a779401374c18d71ad03b2}{%
+           family={Shamir},
+           familyi={S\bibinitperiod},
+           given={Ron},
+           giveni={R\bibinitperiod}}}%
+        {{hash=554d334d2af10fcbf6d59d1194d9191b}{%
+           family={Tarjan},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{fullhash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{bibnamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authorbibnamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authornamehash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \strng{authorfullhash}{c296392a8fd5e99916ad5ecbc9be85f5}
+      \field{labelalpha}{KST97}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM J. Comput.}
+      \field{title}{Faster and simpler algorithm for sorting signed permutations by reversals}
+      \field{volume}{29}
+      \field{year}{1997}
+      \field{pages}{163}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1137/S0097539798334207
+      \endverb
+    \endentry
+    \entry{Christie1998}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=3a46914cbd4c2c069c754e7b212e7517}{%
+           family={Christie},
+           familyi={C\bibinitperiod},
+           given={David\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{fullhash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{bibnamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authorbibnamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authornamehash}{3a46914cbd4c2c069c754e7b212e7517}
+      \strng{authorfullhash}{3a46914cbd4c2c069c754e7b212e7517}
+      \field{labelalpha}{Chr98}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Ninth Annual ACM-SIAM Symposium on Discrete Algorithms}
+      \field{isbn}{0898714109}
+      \field{series}{SODA '98}
+      \field{title}{{A 3/2-Approximation Algorithm for Sorting by Reversals}}
+      \field{year}{1998}
+      \field{pages}{244\bibrangedash 252}
+      \range{pages}{9}
+    \endentry
+    \entry{Berman2001}{article}{}
+      \name{author}{3}{}{%
+        {{hash=994791de889032e5fa28581805545b2e}{%
+           family={Berman},
+           familyi={B\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=587f36f43ff9a1df3a7660807266c117}{%
+           family={Hannenhalli},
+           familyi={H\bibinitperiod},
+           given={Sridhar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5482fd910692daec95489dd87da34892}{%
+           family={Karpinski},
+           familyi={K\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{fullhash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{bibnamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authorbibnamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authornamehash}{43ef413b1a572e084f30e1eaac6b9045}
+      \strng{authorfullhash}{43ef413b1a572e084f30e1eaac6b9045}
+      \field{labelalpha}{BHK01}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Colloquium on Computational Complexity (ECCC)}
+      \field{month}{01}
+      \field{title}{1.375-Approximation Algorithm for Sorting by Reversals}
+      \field{volume}{8}
+      \field{year}{2001}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
